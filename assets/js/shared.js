@@ -626,18 +626,18 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 // console.log(CONFIG)
-saveToSupabase({
-  name: 'Test', phone: '9876543210', email: 'test@gmail.com',
-  tripType: 'One Way', pickup: 'Chennai', drop: 'Madurai',
-  date: '2025-03-10', time: '09:00', returnDate: 'N/A',
-  cabType: 'Sedan', fare: '~₹5,520', timestamp: 'now'
-})
-sendTelegram({
-  name: 'Test', phone: '9876543210', email: 'test@gmail.com',
-  tripType: 'One Way', pickup: 'Chennai', drop: 'Madurai',
-  date: '2025-03-10', time: '09:00', returnDate: 'N/A',
-  cabType: 'Sedan', fare: '~₹5,520', timestamp: 'now'
-})
+// saveToSupabase({
+//   name: 'Test', phone: '9876543210', email: 'test@gmail.com',
+//   tripType: 'One Way', pickup: 'Chennai', drop: 'Madurai',
+//   date: '2025-03-10', time: '09:00', returnDate: 'N/A',
+//   cabType: 'Sedan', fare: '~₹5,520', timestamp: 'now'
+// })
+// sendTelegram({
+//   name: 'Test', phone: '9876543210', email: 'test@gmail.com',
+//   tripType: 'One Way', pickup: 'Chennai', drop: 'Madurai',
+//   date: '2025-03-10', time: '09:00', returnDate: 'N/A',
+//   cabType: 'Sedan', fare: '~₹5,520', timestamp: 'now'
+// })
 
 
 }); // end DOMContentLoaded
