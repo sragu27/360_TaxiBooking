@@ -1,0 +1,44 @@
+/* ═══════════════════════════════════════════════════════════
+   SWIFTRIDE — home.css
+   Page-specific styles for index.html (homepage only)
+   Global styles are in assets/css/main.css
+═══════════════════════════════════════════════════════════ */
+
+#hero {
+      background: linear-gradient(135deg, var(--navy-deeper) 0%, var(--navy) 60%, #2a5a7c 100%);
+      min-height: 100svh; display: flex; align-items: center;
+      position: relative; padding: 6rem 0 3rem;
+      /* NO overflow:hidden — was blocking clicks! */
+    }
+    #hero::before {
+      content: ''; position: absolute; inset: 0; z-index: 0;
+      background: url('https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?w=1600&q=75') center/cover no-repeat;
+      opacity: 0.07; pointer-events: none;
+    }
+    .hero-pattern {
+      position: absolute; inset: 0; z-index: 0; pointer-events: none;
+      background-image: radial-gradient(circle at 70% 30%, rgba(244,192,45,0.08) 0%, transparent 50%);
+    }
+    #hero .container { position: relative; z-index: 2; }
+    .hero-left { position: relative; z-index: 2; }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      font-size: 0.75rem; font-weight: 700; letter-spacing: 0.15em;
+      text-transform: uppercase; color: var(--gold);
+      background: rgba(244,192,45,0.1); border: 1.5px solid rgba(244,192,45,0.3);
+      padding: 0.4rem 1rem; border-radius: 50px; margin-bottom: 1.5rem;
+    }
+    .badge-pulse { width: 8px; height: 8px; border-radius: 50%; background: var(--gold); animation: pulse 1.5s infinite; display:inline-block; }
+    @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.5;transform:scale(0.8)} }
+    .hero-h1 { font-family: var(--ff-display); font-size: clamp(2.6rem,6vw,4rem); font-weight: 800; color: var(--white); line-height: 1.1; margin-bottom: 1.2rem; }
+    .hero-h1 .highlight { color: var(--gold); position: relative; display: inline-block; }
+    .hero-h1 .highlight::after { content: ''; position: absolute; bottom: -4px; left: 0; right: 0; height: 3px; background: var(--gold); border-radius: 2px; }
+    .hero-p { font-size: 1rem; color: rgba(255,255,255,0.75); margin-bottom: 2rem; line-height: 1.8; }
+    .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 2.5rem; }
+    .hero-usp { display: flex; gap: 2rem; flex-wrap: wrap; padding: 1.2rem 1.5rem; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12); border-radius: var(--radius); width: fit-content; }
+    .usp-item { display: flex; align-items: center; gap: 0.5rem; font-size: 0.78rem; color: rgba(255,255,255,0.8); }
+    .usp-item i { color: var(--gold); font-size: 0.9rem; }
+    .route-section { background: var(--off-white); }
+    .how-section { background: var(--navy-pale); }
+    .test-section { background: var(--off-white); }
+    .how-step-num { font-family:var(--ff-display);font-size:3rem;font-weight:800;color:rgba(51,97,132,0.1);line-height:1;margin-bottom:0.5rem; }

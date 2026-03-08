@@ -1,0 +1,187 @@
+<!-- FLEET PAGE: save as fleet.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="SwiftRide fleet — Sedan, SUV, Innova Crysta, Tempo Traveller. Choose your cab for outstation travel in Tamil Nadu."/>
+  <title>Our Fleet — SwiftRide Outstation Taxi</title>
+  <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"/> -->
+  <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Nunito:wght@300;400;600;700&display=swap" rel="stylesheet"/>
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+  <link rel="stylesheet" href="../assets/css/main.css"/>
+  <style>
+    .fleet-card { background:var(--white);border:2px solid var(--border);border-radius:var(--radius-lg);overflow:hidden;transition:all var(--transition); }
+    .fleet-card:hover { border-color:var(--navy);box-shadow:var(--shadow-lg);transform:translateY(-5px); }
+    .fleet-img { height:220px;overflow:hidden; }
+    .fleet-img img { width:100%;height:100%;object-fit:cover;transition:transform .5s; }
+    .fleet-card:hover .fleet-img img { transform:scale(1.05); }
+    .fleet-body { padding:1.5rem; }
+    .fleet-name { font-family:var(--ff-display);font-size:1.3rem;font-weight:800;color:var(--text-dark);margin-bottom:.3rem; }
+    .fleet-models { font-size:.78rem;color:var(--text-light);margin-bottom:1rem; }
+    .fleet-specs { display:flex;flex-wrap:wrap;gap:.7rem;margin-bottom:1rem; }
+    .fleet-spec { display:flex;align-items:center;gap:.35rem;font-size:.78rem;font-weight:600;color:var(--text-dark);background:var(--off-white);padding:.3rem .7rem;border-radius:50px;border:1px solid var(--border); }
+    .fleet-spec i { color:var(--navy);font-size:.72rem; }
+    .fleet-rate { font-family:var(--ff-display);font-size:1.6rem;font-weight:800;color:var(--navy); }
+    .fleet-rate small { font-size:.75rem;color:var(--text-light);font-weight:400; }
+    .popular-badge { background:var(--gold);color:var(--text-dark);font-size:.62rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;padding:.3rem .8rem;border-radius:50px; }
+  </style>
+</head>
+<body>
+<div class="top-bar"><div class="container"><div class="top-bar-inner"><div class="top-bar-left"><span class="top-bar-item"><i class="fas fa-phone-alt"></i><a href="tel:+919876543210">+91 98765 43210</a></span></div><div class="top-bar-right"><span class="top-bar-item"><i class="fas fa-clock"></i> 24/7 Available</span></div></div></div></div>
+<nav id="navbar" class="navbar navbar-expand-lg sticky-top">
+  <div class="container">
+    <a class="navbar-brand" href="../index.html">
+      <img class="navbar-logo" src="../assets/images/logo.png" alt="">
+      <!-- <div class="brand-logo">
+        <i class="fas fa-bolt"></i></div>
+        <div class="brand-text-wrap">
+          <span class="brand-name">Swift<span>Ride</span></span>
+          <span class="brand-tag">Outstation Taxi</span>
+        </div> -->
+      </a>
+    <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu"><i class="fas fa-bars" style="color:var(--navy)"></i></button>
+    <div class="collapse navbar-collapse justify-content-end" id="navMenu">
+      <ul class="navbar-nav align-items-lg-center gap-lg-1">
+        <li class="nav-item"><a class="nav-link-custom nav-link" href="../index.html">Home</a></li>
+        <li class="nav-item"><a class="nav-link-custom nav-link" href="services.html">Services</a></li>
+        <li class="nav-item"><a class="nav-link-custom nav-link" href="fleet.html">Fleet</a></li>
+        <li class="nav-item"><a class="nav-link-custom nav-link" href="tariff.html">Tariff</a></li>
+        <li class="nav-item"><a class="nav-link-custom nav-link" href="about.html">About</a></li>
+        <li class="nav-item"><a class="nav-link-custom nav-link" href="contact.html">Contact</a></li>
+        <li class="nav-item ms-lg-2"><a href="tel:+919876543210" class="nav-phone-btn"><i class="fas fa-phone-alt"></i> Call Now</a></li>
+        <li class="nav-item ms-lg-1"><a href="../index.html#booking" class="nav-link nav-cta">Book Now</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="page-hero"><div class="container page-hero-content"><h1><i class="fas fa-car me-3"></i>Our Fleet</h1><p>Choose the perfect vehicle for your journey — comfort, space, and affordability</p><div class="breadcrumb-custom"><a href="../index.html">Home</a><i class="fas fa-chevron-right"></i><span>Fleet</span></div></div></div>
+
+<section class="section-pad">
+  <div class="container">
+    <div class="text-center mb-5 reveal-up"><span class="section-label">Vehicle Options</span><h2 class="section-title">Pick Your <span>Perfect Ride</span></h2><p class="section-sub">All vehicles are AC, well-maintained, and sanitized before every trip</p></div>
+    <div class="row g-4">
+      <!-- Sedan -->
+      <div class="col-md-6 col-xl-3 reveal-up">
+        <div class="fleet-card">
+          <div class="fleet-img"><img src="https://images.unsplash.com/photo-1541899481282-d53bffe3c35d?w=600&q=80" alt="Sedan"/></div>
+          <div class="fleet-body">
+            <div class="d-flex align-items-start justify-content-between mb-1"><div class="fleet-name">Sedan</div></div>
+            <div class="fleet-models">Swift Dzire · Toyota Etios · Honda Amaze</div>
+            <div class="fleet-specs">
+              <span class="fleet-spec"><i class="fas fa-users"></i> 4 Passengers</span>
+              <span class="fleet-spec"><i class="fas fa-suitcase"></i> 2 Bags</span>
+              <span class="fleet-spec"><i class="fas fa-snowflake"></i> AC</span>
+              <span class="fleet-spec"><i class="fas fa-music"></i> Music</span>
+            </div>
+            <div class="d-flex align-items-center justify-content-between mt-2">
+              <div class="fleet-rate">₹12 <small>/km</small></div>
+              <a href="../index.html#booking" class="btn-navy" style="font-size:.78rem;padding:.5rem 1.2rem;">Book Now</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- SUV -->
+      <div class="col-md-6 col-xl-3 reveal-up d1">
+        <div class="fleet-card">
+          <div class="fleet-img"><img src="https://images.unsplash.com/photo-1502877338535-766e1452684a?w=600&q=80" alt="SUV"/></div>
+          <div class="fleet-body">
+            <div class="fleet-name">SUV</div>
+            <div class="fleet-models">Ertiga · Marazzo · XUV 300 · Bolero</div>
+            <div class="fleet-specs">
+              <span class="fleet-spec"><i class="fas fa-users"></i> 6 Passengers</span>
+              <span class="fleet-spec"><i class="fas fa-suitcase"></i> 3 Bags</span>
+              <span class="fleet-spec"><i class="fas fa-snowflake"></i> AC</span>
+              <span class="fleet-spec"><i class="fas fa-wifi"></i> USB</span>
+            </div>
+            <div class="d-flex align-items-center justify-content-between mt-2">
+              <div class="fleet-rate">₹15 <small>/km</small></div>
+              <a href="../index.html#booking" class="btn-navy" style="font-size:.78rem;padding:.5rem 1.2rem;">Book Now</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Innova -->
+      <div class="col-md-6 col-xl-3 reveal-up d2">
+        <div class="fleet-card" style="border-color:var(--navy);">
+          <div class="fleet-img" style="position:relative">
+            <img src="https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?w=600&q=80" alt="Innova"/>
+            <div style="position:absolute;top:1rem;left:1rem"><span class="popular-badge">Most Popular</span></div>
+          </div>
+          <div class="fleet-body">
+            <div class="fleet-name">Innova Crysta</div>
+            <div class="fleet-models">Toyota Innova Crysta (2020+)</div>
+            <div class="fleet-specs">
+              <span class="fleet-spec"><i class="fas fa-users"></i> 7 Passengers</span>
+              <span class="fleet-spec"><i class="fas fa-suitcase"></i> 4 Bags</span>
+              <span class="fleet-spec"><i class="fas fa-snowflake"></i> Dual AC</span>
+              <span class="fleet-spec"><i class="fas fa-charging-station"></i> Charging</span>
+            </div>
+            <div class="d-flex align-items-center justify-content-between mt-2">
+              <div class="fleet-rate">₹18 <small>/km</small></div>
+              <a href="../index.html#booking" class="btn-gold" style="font-size:.78rem;padding:.5rem 1.2rem;">Book Now</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Tempo -->
+      <div class="col-md-6 col-xl-3 reveal-up d3">
+        <div class="fleet-card">
+          <div class="fleet-img"><img src="https://images.unsplash.com/photo-1464219789935-c2d9d9aba644?w=600&q=80" alt="Tempo"/></div>
+          <div class="fleet-body">
+            <div class="fleet-name">Tempo Traveller</div>
+            <div class="fleet-models">Force Traveller 12/16 Seater</div>
+            <div class="fleet-specs">
+              <span class="fleet-spec"><i class="fas fa-users"></i> 12–16 Seats</span>
+              <span class="fleet-spec"><i class="fas fa-suitcase"></i> Group Luggage</span>
+              <span class="fleet-spec"><i class="fas fa-snowflake"></i> AC</span>
+              <span class="fleet-spec"><i class="fas fa-tv"></i> LCD TV</span>
+            </div>
+            <div class="d-flex align-items-center justify-content-between mt-2">
+              <div class="fleet-rate">₹22 <small>/km</small></div>
+              <a href="../index.html#booking" class="btn-navy" style="font-size:.78rem;padding:.5rem 1.2rem;">Book Now</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Amenities all vehicles -->
+<section class="section-pad bg-navy-pale">
+  <div class="container">
+    <div class="text-center mb-5 reveal-up"><span class="section-label">Standard in All Vehicles</span><h2 class="section-title">Every Cab <span>Comes With</span></h2></div>
+    <div class="row g-4 justify-content-center">
+      <div class="col-6 col-md-4 col-lg-2 reveal-up text-center"><div class="p-3"><div style="font-size:2rem;color:var(--navy);margin-bottom:.5rem"><i class="fas fa-snowflake"></i></div><div class="fw-bold small">Air Conditioning</div></div></div>
+      <div class="col-6 col-md-4 col-lg-2 reveal-up d1 text-center"><div class="p-3"><div style="font-size:2rem;color:var(--navy);margin-bottom:.5rem"><i class="fas fa-user-shield"></i></div><div class="fw-bold small">Verified Driver</div></div></div>
+      <div class="col-6 col-md-4 col-lg-2 reveal-up d2 text-center"><div class="p-3"><div style="font-size:2rem;color:var(--navy);margin-bottom:.5rem"><i class="fas fa-music"></i></div><div class="fw-bold small">Music System</div></div></div>
+      <div class="col-6 col-md-4 col-lg-2 reveal-up d3 text-center"><div class="p-3"><div style="font-size:2rem;color:var(--navy);margin-bottom:.5rem"><i class="fas fa-first-aid"></i></div><div class="fw-bold small">First Aid Kit</div></div></div>
+      <div class="col-6 col-md-4 col-lg-2 reveal-up text-center"><div class="p-3"><div style="font-size:2rem;color:var(--navy);margin-bottom:.5rem"><i class="fas fa-charging-station"></i></div><div class="fw-bold small">USB Charging</div></div></div>
+      <div class="col-6 col-md-4 col-lg-2 reveal-up d1 text-center"><div class="p-3"><div style="font-size:2rem;color:var(--navy);margin-bottom:.5rem"><i class="fas fa-map-marked-alt"></i></div><div class="fw-bold small">Live Tracking</div></div></div>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="row g-4 footer-top">
+      <div class="col-lg-4">
+        <div class="footer-brand">
+          <img class="navbar-logo" src="../assets/images/logo.png" alt="">
+          <!-- <div class="brand-logo"><i class="fas fa-bolt"></i>
+          </div>
+          <div class="brand-text-wrap">
+            <span class="brand-name" style="color:var(--white)">Swift<span>Ride</span></span>
+            <span class="brand-tag">Outstation Taxi</span>
+          </div> -->
+        </div>
+        <p class="footer-about">Tamil Nadu's trusted outstation cab service since 2019.</p><div class="footer-social"><a href="#"><i class="fab fa-facebook-f"></i></a><a href="#"><i class="fab fa-instagram"></i></a><a href="https://wa.me/919876543210"><i class="fab fa-whatsapp"></i></a></div></div><div class="col-sm-6 col-lg-2"><div class="footer-h">Pages</div><ul class="footer-ul"><li><a href="../index.html">Home</a></li><li><a href="services.html">Services</a></li><li><a href="fleet.html">Fleet</a></li><li><a href="tariff.html">Tariff</a></li><li><a href="about.html">About</a></li><li><a href="contact.html">Contact</a></li></ul></div><div class="col-sm-6 col-lg-3"><div class="footer-h">Fleet</div><ul class="footer-ul"><li>Sedan — ₹12/km</li><li>SUV — ₹15/km</li><li>Innova Crysta — ₹18/km</li><li>Tempo Traveller — ₹22/km</li></ul></div><div class="col-lg-3"><div class="footer-h">Contact</div><ul class="footer-ul"><li><i class="fas fa-phone-alt"></i><a href="tel:+919876543210">+91 98765 43210</a></li><li><i class="fab fa-whatsapp"></i><a href="https://wa.me/919876543210">WhatsApp</a></li><li><i class="fas fa-envelope"></i><a href="mailto:bookings@swiftride.in">bookings@swiftride.in</a></li></ul></div></div><hr class="footer-divider"/><div class="footer-bottom"><span>© 2025 SwiftRide Taxi Services.</span></div></div></footer>
+<div class="float-group"><a href="https://wa.me/919876543210" class="wa-float" target="_blank"><i class="fab fa-whatsapp"></i></a><a href="tel:+919876543210" class="call-float"><i class="fas fa-phone-alt"></i></a></div>
+<div id="successToast" class="success-toast"><div class="toast-icon"><i class="fas fa-check-circle"></i></div><div><strong>Booking Confirmed!</strong><p>Driver will contact you shortly.</p></div><button class="toast-close" onclick="closeToast()"><i class="fas fa-times"></i></button></div>
+<!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script> -->
+<script src="../assets/js/bootstrap.bundle.min.js"></script>
+<script src="../assets/js/shared.js "></script>
+</body></html>

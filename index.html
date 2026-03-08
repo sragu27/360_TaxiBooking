@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SwiftRide — Outstation Taxi | Tamil Nadu Cab Service</title>
+  <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+  <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"/> -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Nunito:wght@300;400;600;700&display=swap" rel="stylesheet"/>
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+  <link rel="stylesheet" href="assets/css/main.css"/>
+  <link rel="stylesheet" href="assets/css/home.css">
+  <!-- <style>
+    #hero {
+      background: linear-gradient(135deg, var(--navy-deeper) 0%, var(--navy) 60%, #2a5a7c 100%);
+      min-height: 100svh; display: flex; align-items: center;
+      position: relative; padding: 6rem 0 3rem;
+      /* NO overflow:hidden — was blocking clicks! */
+    }
+    #hero::before {
+      content: ''; position: absolute; inset: 0; z-index: 0;
+      background: url('https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?w=1600&q=75') center/cover no-repeat;
+      opacity: 0.07; pointer-events: none;
+    }
+    .hero-pattern {
+      position: absolute; inset: 0; z-index: 0; pointer-events: none;
+      background-image: radial-gradient(circle at 70% 30%, rgba(244,192,45,0.08) 0%, transparent 50%);
+    }
+    #hero .container { position: relative; z-index: 2; }
+    .hero-left { position: relative; z-index: 2; }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      font-size: 0.75rem; font-weight: 700; letter-spacing: 0.15em;
+      text-transform: uppercase; color: var(--gold);
+      background: rgba(244,192,45,0.1); border: 1.5px solid rgba(244,192,45,0.3);
+      padding: 0.4rem 1rem; border-radius: 50px; margin-bottom: 1.5rem;
+    }
+    .badge-pulse { width: 8px; height: 8px; border-radius: 50%; background: var(--gold); animation: pulse 1.5s infinite; display:inline-block; }
+    @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.5;transform:scale(0.8)} }
+    .hero-h1 { font-family: var(--ff-display); font-size: clamp(2.6rem,6vw,4rem); font-weight: 800; color: var(--white); line-height: 1.1; margin-bottom: 1.2rem; }
+    .hero-h1 .highlight { color: var(--gold); position: relative; display: inline-block; }
+    .hero-h1 .highlight::after { content: ''; position: absolute; bottom: -4px; left: 0; right: 0; height: 3px; background: var(--gold); border-radius: 2px; }
+    .hero-p { font-size: 1rem; color: rgba(255,255,255,0.75); margin-bottom: 2rem; line-height: 1.8; }
+    .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 2.5rem; }
+    .hero-usp { display: flex; gap: 2rem; flex-wrap: wrap; padding: 1.2rem 1.5rem; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12); border-radius: var(--radius); width: fit-content; }
+    .usp-item { display: flex; align-items: center; gap: 0.5rem; font-size: 0.78rem; color: rgba(255,255,255,0.8); }
+    .usp-item i { color: var(--gold); font-size: 0.9rem; }
+    .route-section { background: var(--off-white); }
+    .how-section { background: var(--navy-pale); }
+    .test-section { background: var(--off-white); }
+    .how-step-num { font-family:var(--ff-display);font-size:3rem;font-weight:800;color:rgba(51,97,132,0.1);line-height:1;margin-bottom:0.5rem; }
+  </style> -->
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div class="top-bar">
+  <div class="container">
+    <div class="top-bar-inner">
+      <div class="top-bar-left">
+        <span class="top-bar-item"><i class="fas fa-phone-alt"></i> <a href="tel:+919876543210">+91 98765 43210</a></span>
+        <span class="top-bar-item"><i class="fas fa-envelope"></i> <a href="/cdn-cgi/l/email-protection#ddbfb2b2b6b4b3baae9daeaab4bba9afb4b9b8f3b4b3"><span class="__cf_email__" data-cfemail="791b16161210171e0a390a0e101f0d0b101d1c571017">[email&#160;protected]</span></a></span>
+      </div>
+      <div class="top-bar-right">
+        <span class="top-bar-item"><i class="fas fa-clock"></i> Available 24/7</span>
+        <span class="top-bar-item"><i class="fas fa-map-marker-alt"></i> Tamil Nadu, India</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- NAVBAR -->
+<nav id="navbar" class="navbar navbar-expand-lg sticky-top">
+  <div class="container">
+    <a class="navbar-brand" href="index.html">
+      <img class="navbar-logo" src="assets/images/logo.png" alt="">
+      <!-- <div class="brand-logo"><i class="fas fa-bolt"></i></div>
+      <div class="brand-text-wrap">
+        <span class="brand-name">Swift<span>Ride</span></span>
+        <span class="brand-tag">Outstation Taxi</span>
+      </div> -->
+    </a>
+    <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+      <i class="fas fa-bars" style="color:var(--navy)"></i>
+    </button>
+    <div class="collapse navbar-collapse justify-content-end" id="navMenu">
+      <ul class="navbar-nav align-items-lg-center gap-lg-1">
+        <li class="nav-item"><a class="nav-link-custom nav-link" href="index.html">Home</a></li>
+        <li class="nav-item"><a class="nav-link-custom nav-link" href="pages/services.html">Services</a></li>
+        <li class="nav-item"><a class="nav-link-custom nav-link" href="pages/fleet.html">Fleet</a></li>
+        <li class="nav-item"><a class="nav-link-custom nav-link" href="pages/tariff.html">Tariff</a></li>
+        <li class="nav-item"><a class="nav-link-custom nav-link" href="pages/about.html">About</a></li>
+        <li class="nav-item"><a class="nav-link-custom nav-link" href="pages/contact.html">Contact</a></li>
+        <li class="nav-item ms-lg-2"><a href="tel:+919876543210" class="nav-phone-btn"><i class="fas fa-phone-alt"></i> Call Now</a></li>
+        <li class="nav-item ms-lg-1"><a href="#booking" class="nav-link nav-cta">Book Now</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-pattern"></div>
+  <div class="container" style="position:relative;z-index:2;">
+    <div class="row align-items-center g-5">
+
+      <!-- LEFT: text -->
+      <div class="col-lg-6 hero-left">
+        <div class="hero-badge"><span class="badge-pulse"></span> Tamil Nadu's #1 Outstation Cab</div>
+        <h1 class="hero-h1">Book Your Taxi,<br/>Travel with <span class="highlight">Confidence</span></h1>
+        <p class="hero-p">One Way · Round Trip · Airport Transfers · Hourly<br/>Professional drivers, transparent pricing, instant booking across 150+ cities.</p>
+        <div class="hero-actions">
+          <a href="#booking" class="btn-gold"><i class="fas fa-bolt me-2"></i>Book Now</a>
+          <a href="tel:+919876543210" class="btn-outline-navy" style="border-color:rgba(255,255,255,0.4);color:#fff;"><i class="fas fa-phone-alt me-2"></i>Call Us</a>
+        </div>
+        <div class="hero-usp">
+          <div class="usp-item"><i class="fas fa-shield-alt"></i> Safe & Verified</div>
+          <div class="usp-item"><i class="fas fa-rupee-sign"></i> No Hidden Charges</div>
+          <div class="usp-item"><i class="fas fa-bolt"></i> Instant Confirm</div>
+        </div>
+      </div>
+
+      <!-- RIGHT: booking widget — NO reveal-up, z-index set -->
+      <div class="col-lg-6" id="booking" style="position:relative;z-index:10;">
+        <div class="booking-widget" id="bookingWidget">
+          <div class="booking-widget-header">
+            <div>
+              <h3><i class="fas fa-car me-2"></i>Book Your Taxi</h3>
+              <p>Instant confirmation · No advance payment needed</p>
+            </div>
+          </div>
+          <div class="booking-widget-body">
+
+            <!-- TRIP TABS -->
+            <div class="trip-tabs" id="tripTabs">
+              <button class="trip-tab active" data-trip="oneway"><i class="fas fa-arrow-right"></i>One Way</button>
+              <button class="trip-tab" data-trip="roundtrip"><i class="fas fa-sync-alt"></i>Round Trip</button>
+              <button class="trip-tab" data-trip="airport"><i class="fas fa-plane"></i>Airport</button>
+              <button class="trip-tab" data-trip="hourly"><i class="fas fa-clock"></i>Hourly</button>
+            </div>
+
+            <form id="bookingForm">
+              <!-- Pickup -->
+              <div class="field-group">
+                <div class="field-label"><i class="fas fa-map-marker-alt icon-pickup"></i> Pickup Location</div>
+                <div class="location-wrap">
+                  <input type="text" id="pickupInput" class="field-input" placeholder="Enter pickup city or address" autocomplete="off" required/>
+                  <div class="suggestions-box" id="pickupBox"></div>
+                </div>
+              </div>
+              <!-- Swap -->
+              <div class="swap-row" id="swapRow">
+                <button type="button" id="swapBtn" class="swap-btn" title="Swap"><i class="fas fa-exchange-alt"></i></button>
+              </div>
+              <!-- Drop -->
+              <div class="field-group" id="dropWrap">
+                <div class="field-label"><i class="fas fa-map-marker-alt icon-drop"></i> Drop Location</div>
+                <div class="location-wrap">
+                  <input type="text" id="dropInput" class="field-input" placeholder="Enter destination city or address" autocomplete="off"/>
+                  <div class="suggestions-box" id="dropBox"></div>
+                </div>
+              </div>
+              <!-- Date/Time -->
+              <div class="row g-2">
+                <div class="col-6">
+                  <div class="field-group">
+                    <div class="field-label"><i class="fas fa-calendar-alt icon-date"></i> Travel Date</div>
+                    <input type="date" id="travelDate" class="field-input" required/>
+                  </div>
+                </div>
+                <div class="col-6">
+                  <div class="field-group">
+                    <div class="field-label"><i class="fas fa-clock icon-date"></i> Pickup Time</div>
+                    <input type="time" id="travelTime" class="field-input" required/>
+                  </div>
+                </div>
+              </div>
+              <!-- Return date (roundtrip only) -->
+              <div class="field-group" id="returnDateWrap" style="display:none">
+                <div class="field-label"><i class="fas fa-calendar-check icon-date"></i> Return Date</div>
+                <input type="date" id="returnDate" class="field-input"/>
+              </div>
+              <!-- Cab selector -->
+              <div class="field-group">
+                <div class="field-label"><i class="fas fa-car icon-date"></i> Choose Cab</div>
+                <div class="cab-grid" id="cabGrid">
+                  <label class="cab-card active">
+                    <input type="radio" name="cabType" value="Sedan" data-rate="12" checked/>
+                    <i class="fas fa-car"></i><span class="cab-name">Sedan</span><span class="cab-rate">₹12/km</span>
+                  </label>
+                  <label class="cab-card">
+                    <input type="radio" name="cabType" value="SUV" data-rate="15"/>
+                    <i class="fas fa-truck-pickup"></i><span class="cab-name">SUV</span><span class="cab-rate">₹15/km</span>
+                  </label>
+                  <label class="cab-card">
+                    <input type="radio" name="cabType" value="Innova" data-rate="18"/>
+                    <i class="fas fa-shuttle-van"></i><span class="cab-name">Innova</span><span class="cab-rate">₹18/km</span>
+                  </label>
+                  <label class="cab-card">
+                    <input type="radio" name="cabType" value="Tempo" data-rate="22"/>
+                    <i class="fas fa-bus-alt"></i><span class="cab-name">Tempo</span><span class="cab-rate">₹22/km</span>
+                  </label>
+                </div>
+              </div>
+              <!-- Passenger details -->
+              <div class="row g-2">
+                <div class="col-sm-6">
+                  <div class="field-group">
+                    <div class="field-label"><i class="fas fa-user icon-date"></i> Your Name</div>
+                    <input type="text" id="passengerName" class="field-input" placeholder="Full name" required/>
+                  </div>
+                </div>
+                <div class="col-sm-6">
+                  <div class="field-group">
+                    <div class="field-label"><i class="fas fa-phone icon-date"></i> Phone Number</div>
+                    <input type="tel" id="passengerPhone" class="field-input" placeholder="+91 XXXXX XXXXX" required/>
+                  </div>
+                </div>
+              </div>
+              <!-- Email address -->
+              <div class="row g-2">
+                <div class="col-12">
+                  <div class="field-group">
+                    <div class="field-label">
+                      <i class="fas fa-envelope icon-date"></i> Email Address
+                    </div>
+                    <input type="email" id="passengerEmail" class="field-input" 
+                          placeholder="your@email.com (for booking confirmation)"/>
+                  </div>
+                </div>
+              </div>
+              <!-- Fare estimate -->
+              <div class="fare-box" id="fareBox" style="display:none">
+                <div class="fare-row"><span class="fare-label"><i class="fas fa-road"></i> Distance</span><span class="fare-value" id="fareDistance">—</span></div>
+                <div class="fare-row"><span class="fare-label"><i class="fas fa-rupee-sign"></i> Estimated Fare</span><span class="fare-value big" id="fareAmount">—</span></div>
+                <p class="fare-note">* Estimate only. Toll & parking extra. Final fare at trip end.</p>
+              </div>
+              <button type="submit" class="book-now-btn" id="bookBtn">
+                <i class="fas fa-bolt me-2"></i>Book Now — Instant Confirm
+              </button>
+              <div class="notify-row">
+                <span><i class="fab fa-whatsapp text-success"></i> WhatsApp alert</span>
+                <span><i class="fas fa-envelope" style="color:var(--navy)"></i> Email confirm</span>
+                <span><i class="fab fa-telegram" style="color:#0088cc"></i> Telegram ping</span>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+      <!-- end booking widget col -->
+
+    </div>
+  </div>
+</section>
+
+<!-- TRUST BAR -->
+<div class="trust-bar">
+  <div class="container">
+    <div class="trust-items">
+      <div class="trust-item"><i class="fas fa-shield-alt"></i> Police Verified Drivers</div>
+      <div class="trust-item"><i class="fas fa-rupee-sign"></i> No Hidden Charges</div>
+      <div class="trust-item"><i class="fas fa-headset"></i> 24/7 Support</div>
+      <div class="trust-item"><i class="fas fa-star" style="color:var(--gold-dark)"></i> 4.9★ Google Rating</div>
+      <div class="trust-item"><i class="fas fa-check-circle" style="color:#22c55e"></i> 12,000+ Happy Rides</div>
+    </div>
+  </div>
+</div>
+
+<!-- SERVICES OVERVIEW -->
+<section class="section-pad">
+  <div class="container">
+    <div class="text-center mb-5 reveal-up">
+      <span class="section-label">What We Offer</span>
+      <h2 class="section-title">Our <span>Taxi Services</span></h2>
+      <p class="section-sub">All trip types, all routes, all cab sizes — one reliable service.</p>
+    </div>
+    <div class="row g-4">
+      <div class="col-sm-6 col-lg-3 reveal-up"><div class="why-card text-center"><div class="why-icon mx-auto"><i class="fas fa-arrow-right"></i></div><h5>One Way Drop</h5><p>Pay only for the distance you travel. No return trip charges.</p><a href="pages/services.html" class="btn-outline-navy mt-3" style="font-size:0.8rem;padding:0.5rem 1.2rem;">Learn More</a></div></div>
+      <div class="col-sm-6 col-lg-3 reveal-up d1"><div class="why-card text-center"><div class="why-icon mx-auto" style="background:rgba(244,192,45,0.1);border-color:rgba(244,192,45,0.3);color:var(--gold-dark)"><i class="fas fa-sync-alt"></i></div><h5>Round Trip</h5><p>Driver waits for you. 10% discount on both ways.</p><a href="pages/services.html" class="btn-outline-navy mt-3" style="font-size:0.8rem;padding:0.5rem 1.2rem;">Learn More</a></div></div>
+      <div class="col-sm-6 col-lg-3 reveal-up d2"><div class="why-card text-center"><div class="why-icon mx-auto" style="background:#e8f5e9;border-color:#a5d6a7;color:#2e7d32"><i class="fas fa-plane-departure"></i></div><h5>Airport Transfer</h5><p>On-time pickup & drop. All major TN airports covered.</p><a href="pages/services.html" class="btn-outline-navy mt-3" style="font-size:0.8rem;padding:0.5rem 1.2rem;">Learn More</a></div></div>
+      <div class="col-sm-6 col-lg-3 reveal-up d3"><div class="why-card text-center"><div class="why-icon mx-auto" style="background:#f3e5f5;border-color:#ce93d8;color:#7b1fa2"><i class="fas fa-clock"></i></div><h5>Hourly Rental</h5><p>4 / 8 / 12 hour packages for local city travel.</p><a href="pages/services.html" class="btn-outline-navy mt-3" style="font-size:0.8rem;padding:0.5rem 1.2rem;">Learn More</a></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats-strip">
+  <div class="container">
+    <div class="row align-items-center text-center g-4">
+      <div class="col-6 col-md-3"><div class="stat-box"><span class="stat-num" data-target="12000" data-suffix="+">0</span><div class="stat-label">Happy Rides</div></div></div>
+      <div class="col-6 col-md-3"><div class="stat-box"><span class="stat-num" data-target="150" data-suffix="+">0</span><div class="stat-label">Cities Covered</div></div></div>
+      <div class="col-6 col-md-3"><div class="stat-box"><span class="stat-num" data-target="98" data-suffix="%">0</span><div class="stat-label">On-Time Rate</div></div></div>
+      <div class="col-6 col-md-3"><div class="stat-box"><span class="stat-num" data-target="6" data-suffix=" yrs">0</span><div class="stat-label">In Business</div></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- POPULAR ROUTES -->
+<section class="section-pad route-section">
+  <div class="container">
+    <div class="text-center mb-5 reveal-up">
+      <span class="section-label">Most Booked</span>
+      <h2 class="section-title">Popular <span>Routes</span></h2>
+      <p class="section-sub">Click any route to auto-fill the booking form above</p>
+    </div>
+    <div class="row g-3">
+      <div class="col-12 col-md-6 col-lg-4 reveal-up"><div class="route-card" onclick="fillRoute('Chennai','Pondicherry')"><i class="fas fa-route route-icon"></i><div><div class="route-from-to">Chennai → Pondicherry</div><div class="route-info">~160 km · Sedan</div></div><div class="route-price">₹1,920</div></div></div>
+      <div class="col-12 col-md-6 col-lg-4 reveal-up d1"><div class="route-card" onclick="fillRoute('Chennai','Coimbatore')"><i class="fas fa-route route-icon"></i><div><div class="route-from-to">Chennai → Coimbatore</div><div class="route-info">~500 km · Sedan</div></div><div class="route-price">₹6,000</div></div></div>
+      <div class="col-12 col-md-6 col-lg-4 reveal-up d2"><div class="route-card" onclick="fillRoute('Chennai','Madurai')"><i class="fas fa-route route-icon"></i><div><div class="route-from-to">Chennai → Madurai</div><div class="route-info">~460 km · Sedan</div></div><div class="route-price">₹5,520</div></div></div>
+      <div class="col-12 col-md-6 col-lg-4 reveal-up"><div class="route-card" onclick="fillRoute('Coimbatore','Ooty')"><i class="fas fa-route route-icon"></i><div><div class="route-from-to">Coimbatore → Ooty</div><div class="route-info">~86 km · Sedan</div></div><div class="route-price">₹1,032</div></div></div>
+      <div class="col-12 col-md-6 col-lg-4 reveal-up d1"><div class="route-card" onclick="fillRoute('Chennai','Tirupati')"><i class="fas fa-route route-icon"></i><div><div class="route-from-to">Chennai → Tirupati</div><div class="route-info">~130 km · Sedan</div></div><div class="route-price">₹1,560</div></div></div>
+      <div class="col-12 col-md-6 col-lg-4 reveal-up d2"><div class="route-card" onclick="fillRoute('Madurai','Rameshwaram')"><i class="fas fa-route route-icon"></i><div><div class="route-from-to">Madurai → Rameshwaram</div><div class="route-info">~173 km · Sedan</div></div><div class="route-price">₹2,076</div></div></div>
+    </div>
+    <div class="text-center mt-4 reveal-up"><a href="pages/tariff.html" class="btn-navy">View All Routes & Tariff <i class="fas fa-arrow-right ms-2"></i></a></div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="section-pad how-section">
+  <div class="container">
+    <div class="text-center mb-5 reveal-up"><span class="section-label">Simple & Fast</span><h2 class="section-title">How It <span>Works</span></h2></div>
+    <div class="row g-4 justify-content-center">
+      <div class="col-sm-6 col-lg-3 reveal-up"><div class="text-center p-3"><div class="how-step-num">01</div><div class="why-icon mx-auto mb-3"><i class="fas fa-map-marked-alt"></i></div><h5 class="fw-bold mb-2" style="font-family:var(--ff-display)">Enter Locations</h5><p class="small text-muted">Type pickup & drop — suggestions appear instantly as you type.</p></div></div>
+      <div class="col-sm-6 col-lg-3 reveal-up d1"><div class="text-center p-3"><div class="how-step-num">02</div><div class="why-icon mx-auto mb-3" style="background:rgba(244,192,45,0.1);border-color:rgba(244,192,45,0.3);color:var(--gold-dark)"><i class="fas fa-car-side"></i></div><h5 class="fw-bold mb-2" style="font-family:var(--ff-display)">Pick Your Cab</h5><p class="small text-muted">Choose Sedan, SUV, Innova Crysta or Tempo Traveller.</p></div></div>
+      <div class="col-sm-6 col-lg-3 reveal-up d2"><div class="text-center p-3"><div class="how-step-num">03</div><div class="why-icon mx-auto mb-3" style="background:#e8f5e9;border-color:#a5d6a7;color:#2e7d32"><i class="fas fa-rupee-sign"></i></div><h5 class="fw-bold mb-2" style="font-family:var(--ff-display)">See Fare Estimate</h5><p class="small text-muted">Transparent fare shown instantly. No hidden charges ever.</p></div></div>
+      <div class="col-sm-6 col-lg-3 reveal-up d3"><div class="text-center p-3"><div class="how-step-num">04</div><div class="why-icon mx-auto mb-3" style="background:#fce4ec;border-color:#f48fb1;color:#c62828"><i class="fas fa-bolt"></i></div><h5 class="fw-bold mb-2" style="font-family:var(--ff-display)">Instant Confirm</h5><p class="small text-muted">Booking sent via WhatsApp, Email & Telegram instantly.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="section-pad test-section">
+  <div class="container">
+    <div class="text-center mb-5 reveal-up"><span class="section-label">Customer Reviews</span><h2 class="section-title">What Our <span>Riders Say</span></h2></div>
+    <div class="row g-4">
+      <div class="col-md-4 reveal-up"><div class="testimonial-card"><div class="stars">★★★★★</div><p class="testimonial-text">"Booked a one-way ride Chennai to Pondicherry at 5 AM. Driver arrived 10 minutes early, fare was exactly what was shown. Highly recommend!"</p><div class="testimonial-author"><div class="author-avatar">RK</div><div><div class="author-name">Rajesh Kumar</div><div class="author-city">Chennai</div></div></div></div></div>
+      <div class="col-md-4 reveal-up d1"><div class="testimonial-card"><div class="stars">★★★★★</div><p class="testimonial-text">"Airport drop at 3 AM. They tracked my flight, driver was waiting at the gate. Absolutely seamless. Will always use SwiftRide."</p><div class="testimonial-author"><div class="author-avatar">PM</div><div><div class="author-name">Priya Meenakshi</div><div class="author-city">Coimbatore</div></div></div></div></div>
+      <div class="col-md-4 reveal-up d2"><div class="testimonial-card"><div class="stars">★★★★★</div><p class="testimonial-text">"Innova Crysta for family trip to Ooty — 6 people, lots of luggage. Driver was patient and knew every scenic route. Best cab in TN!"</p><div class="testimonial-author"><div class="author-avatar">SK</div><div><div class="author-name">Suresh Kannan</div><div class="author-city">Madurai</div></div></div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section style="background:var(--navy);padding:4rem 0;">
+  <div class="container text-center reveal-up">
+    <h2 style="font-family:var(--ff-display);color:var(--white);font-weight:800;font-size:clamp(1.8rem,4vw,2.5rem);margin-bottom:1rem">Ready to Book Your Ride?</h2>
+    <p style="color:rgba(255,255,255,0.75);margin-bottom:2rem;">No advance payment · Transparent pricing · Instant WhatsApp confirmation</p>
+    <div class="d-flex gap-3 justify-content-center flex-wrap">
+      <a href="#booking" class="btn-gold"><i class="fas fa-bolt me-2"></i>Book Online Now</a>
+      <a href="tel:+919876543210" class="btn-outline-navy" style="border-color:rgba(255,255,255,0.4);color:#fff;"><i class="fas fa-phone-alt me-2"></i>Call +91 98765 43210</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <div class="container">
+    <div class="row g-4">
+      <div class="col-lg-4">
+        <div class="footer-brand">
+          <img class="navbar-logo" src="assets/images/logo.png" alt="">
+          <!-- <div class="brand-logo"><i class="fas fa-bolt"></i></div>
+          <div class="brand-text-wrap"><span class="brand-name" style="color:var(--white)">Swift<span>Ride</span></span>
+            <span class="brand-tag">Outstation Taxi</span>
+          </div> -->
+        </div>
+        <p class="footer-about">Tamil Nadu's trusted outstation cab service. Professional drivers, transparent fares, 24/7 availability across 150+ cities since 2019.</p>
+        <div class="footer-social"><a href="#"><i class="fab fa-facebook-f"></i></a><a href="#"><i class="fab fa-instagram"></i></a><a href="https://wa.me/919876543210"><i class="fab fa-whatsapp"></i></a><a href="#"><i class="fab fa-youtube"></i></a></div>
+      </div>
+      <div class="col-sm-6 col-lg-2"><div class="footer-h">Pages</div><ul class="footer-ul"><li><a href="index.html">Home</a></li><li><a href="pages/services.html">Services</a></li><li><a href="pages/fleet.html">Fleet</a></li><li><a href="pages/tariff.html">Tariff</a></li><li><a href="pages/about.html">About Us</a></li><li><a href="pages/contact.html">Contact</a></li></ul></div>
+      <div class="col-sm-6 col-lg-3"><div class="footer-h">Popular Routes</div><ul class="footer-ul"><li>Chennai → Pondicherry</li><li>Chennai → Coimbatore</li><li>Chennai → Madurai</li><li>Coimbatore → Ooty</li><li>Chennai → Bangalore</li><li>Trichy → Chennai</li></ul></div>
+      <div class="col-lg-3"><div class="footer-h">Contact Us</div><ul class="footer-ul"><li><i class="fas fa-phone-alt"></i><a href="tel:+919876543210">+91 98765 43210</a></li><li><i class="fab fa-whatsapp"></i><a href="https://wa.me/919876543210">WhatsApp Us</a></li><li><i class="fas fa-envelope"></i><a href="/cdn-cgi/l/email-protection#264449494d4f4841556655514f4052544f4243084f48"><span class="__cf_email__" data-cfemail="83e1ecece8eaede4f0c3f0f4eae5f7f1eae7e6adeaed">[email&#160;protected]</span></a></li><li><i class="fas fa-map-marker-alt"></i>No. 12, Anna Salai, Chennai - 600002</li><li><i class="fas fa-clock"></i>Available 24 hours, 7 days</li></ul></div>
+    </div>
+    <hr class="footer-divider"/>
+    <div class="footer-bottom"><span>© 2025 SwiftRide Taxi Services. All rights reserved.</span><span><a href="#">Privacy Policy</a> · <a href="#">Terms of Service</a></span></div>
+  </div>
+</footer>
+
+<!-- SUCCESS TOAST -->
+<div id="successToast" class="success-toast">
+  <div class="toast-icon"><i class="fas fa-check-circle"></i></div>
+  <div><strong>Booking Confirmed! 🎉</strong><p>Driver will contact you shortly. Check WhatsApp & Email for details.</p></div>
+  <button class="toast-close" onclick="closeToast()"><i class="fas fa-times"></i></button>
+</div>
+
+<!-- FLOATING BUTTONS -->
+<div class="float-group">
+  <a href="tel:+919876543210" class="call-float"><i class="fas fa-phone-alt"></i></a>
+</div>
+<script src="assets/js/bootstrap.bundle.min.js"></script>
+<!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script> -->
+<script src="assets/js/shared.js"></script>
+</body>
+</html>
