@@ -312,7 +312,7 @@ async function saveToSupabase(b) {
 async function sendTelegram(b) {
   try {
     const text = [
-      `🚖 <b>NEW BOOKING — SwiftRide</b>`,
+      `🚖 <b>NEW BOOKING — 360 Cabs</b>`,
       `━━━━━━━━━━━━━━━━━━━━`,
       `👤 <b>Name:</b> ${b.name}`,
       `📞 <b>Phone:</b> ${b.phone}`,
