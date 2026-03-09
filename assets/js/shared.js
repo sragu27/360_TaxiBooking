@@ -21,6 +21,7 @@ const todayStr   = new Date().toISOString().split('T')[0];
    TAMIL NADU CITIES FALLBACK
 ══════════════════════════════════════════ */
 const TN_CITIES = [
+  // ── Major Cities ──────────────────────────────────────
   { name: 'Chennai',                          state: 'Tamil Nadu',     lat: 13.0827, lon: 80.2707 },
   { name: 'Coimbatore',                       state: 'Tamil Nadu',     lat: 11.0168, lon: 76.9558 },
   { name: 'Madurai',                          state: 'Tamil Nadu',     lat:  9.9252, lon: 78.1198 },
@@ -39,13 +40,46 @@ const TN_CITIES = [
   { name: 'Kumbakonam',                       state: 'Tamil Nadu',     lat: 10.9617, lon: 79.3788 },
   { name: 'Chidambaram',                      state: 'Tamil Nadu',     lat: 11.3993, lon: 79.6927 },
   { name: 'Dindigul',                         state: 'Tamil Nadu',     lat: 10.3624, lon: 77.9695 },
+  // ── More Tamil Nadu Cities ────────────────────────────
+  { name: 'Nagercoil',                        state: 'Tamil Nadu',     lat:  8.1833, lon: 77.4119 },
+  { name: 'Pollachi',                         state: 'Tamil Nadu',     lat: 10.6574, lon: 76.9974 },
+  { name: 'Karur',                            state: 'Tamil Nadu',     lat: 10.9601, lon: 78.0766 },
+  { name: 'Namakkal',                         state: 'Tamil Nadu',     lat: 11.2195, lon: 78.1675 },
+  { name: 'Tiruvannamalai',                   state: 'Tamil Nadu',     lat: 12.2253, lon: 79.0747 },
+  { name: 'Cuddalore',                        state: 'Tamil Nadu',     lat: 11.7447, lon: 79.7689 },
+  { name: 'Nagapattinam',                     state: 'Tamil Nadu',     lat: 10.7672, lon: 79.8449 },
+  { name: 'Hosur',                            state: 'Tamil Nadu',     lat: 12.7409, lon: 77.8253 },
+  { name: 'Ambur',                            state: 'Tamil Nadu',     lat: 12.7936, lon: 78.7137 },
+  { name: 'Ranipet',                          state: 'Tamil Nadu',     lat: 12.9246, lon: 79.3327 },
+  { name: 'Sivakasi',                         state: 'Tamil Nadu',     lat:  9.4533, lon: 77.7899 },
+  { name: 'Virudhunagar',                     state: 'Tamil Nadu',     lat:  9.5680, lon: 77.9624 },
+  { name: 'Ramanathapuram',                   state: 'Tamil Nadu',     lat:  9.3762, lon: 78.8309 },
+  { name: 'Pudukkottai',                      state: 'Tamil Nadu',     lat: 10.3797, lon: 78.8214 },
+  { name: 'Krishnagiri',                      state: 'Tamil Nadu',     lat: 12.5186, lon: 78.2137 },
+  { name: 'Dharmapuri',                       state: 'Tamil Nadu',     lat: 12.1277, lon: 78.1580 },
+  { name: 'Villupuram',                       state: 'Tamil Nadu',     lat: 11.9395, lon: 79.4921 },
+  { name: 'Tiruvallur',                       state: 'Tamil Nadu',     lat: 13.1439, lon: 79.9083 },
+  { name: 'Kanchipuram',                      state: 'Tamil Nadu',     lat: 12.8333, lon: 79.7000 },
+  { name: 'Mahabalipuram',                    state: 'Tamil Nadu',     lat: 12.6269, lon: 80.1927 },
+  { name: 'Tiruchendur',                      state: 'Tamil Nadu',     lat:  8.4946, lon: 78.1204 },
+  { name: 'Courtallam (Kutralam)',            state: 'Tamil Nadu',     lat:  8.9310, lon: 77.2754 },
+  { name: 'Yelagiri',                         state: 'Tamil Nadu',     lat: 12.5833, lon: 78.6333 },
+  { name: 'Yercaud',                          state: 'Tamil Nadu',     lat: 11.7745, lon: 78.2085 },
+  { name: 'Valparai',                         state: 'Tamil Nadu',     lat: 10.3269, lon: 76.9551 },
+  // ── Nearby States ─────────────────────────────────────
   { name: 'Bangalore',                        state: 'Karnataka',      lat: 12.9716, lon: 77.5946 },
+  { name: 'Mysore',                           state: 'Karnataka',      lat: 12.2958, lon: 76.6394 },
   { name: 'Tirupati',                         state: 'Andhra Pradesh', lat: 13.6288, lon: 79.4192 },
   { name: 'Hyderabad',                        state: 'Telangana',      lat: 17.3850, lon: 78.4867 },
+  { name: 'Thrissur',                         state: 'Kerala',         lat: 10.5276, lon: 76.2144 },
+  { name: 'Kochi',                            state: 'Kerala',         lat:  9.9312, lon: 76.2673 },
+  // ── Airports ──────────────────────────────────────────
   { name: 'Chennai International Airport',    state: 'Tamil Nadu',     lat: 12.9941, lon: 80.1709 },
   { name: 'Coimbatore International Airport', state: 'Tamil Nadu',     lat: 11.0300, lon: 77.0434 },
   { name: 'Madurai Airport',                  state: 'Tamil Nadu',     lat:  9.8345, lon: 78.0934 },
   { name: 'Trichy Airport',                   state: 'Tamil Nadu',     lat: 10.7654, lon: 78.7090 },
+  { name: 'Tuticorin Airport',                state: 'Tamil Nadu',     lat:  8.7242, lon: 78.0258 },
+  { name: 'Salem Airport',                    state: 'Tamil Nadu',     lat: 11.7833, lon: 78.0656 },
 ];
 
 const ROUTE_COORDS = {
@@ -150,14 +184,14 @@ function fillRoute(from, to) {
 ══════════════════════════════════════════ */
 async function getPlaceSuggestions(query) {
   if (query.length < 2) return [];
-  if (CONFIG.GOOGLE_API_KEY && CONFIG.GOOGLE_API_KEY !== 'YOUR_GOOGLE_PLACES_API_KEY') {
-    try {
-      const url = `https://maps.googleapis.com/maps/api/place/autocomplete/json?input=${encodeURIComponent(query)}&components=country:in&types=(cities)&key=${CONFIG.GOOGLE_API_KEY}`;
-      const res  = await fetch(url);
-      const data = await res.json();
-      if (data.status === 'OK') return data.predictions;
-    } catch(e) { console.warn('Google Places error, using fallback'); }
-  }
+  // if (CONFIG.GOOGLE_API_KEY && CONFIG.GOOGLE_API_KEY !== 'YOUR_GOOGLE_PLACES_API_KEY') {
+  //   try {
+  //     const url = `https://maps.googleapis.com/maps/api/place/autocomplete/json?input=${encodeURIComponent(query)}&components=country:in&types=(cities)&key=${CONFIG.GOOGLE_API_KEY}`;
+  //     const res  = await fetch(url);
+  //     const data = await res.json();
+  //     if (data.status === 'OK') return data.predictions;
+  //   } catch(e) { console.warn('Google Places error, using fallback'); }
+  // }
   const q = query.toLowerCase();
   return TN_CITIES
     .filter(c => c.name.toLowerCase().includes(q) || c.state.toLowerCase().includes(q))
