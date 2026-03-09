@@ -1,0 +1,14 @@
+# ⚠️ SECRET KEYS — NEVER PUSH TO GITHUB
+assets/js/config.js
+
+# System files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# VS Code
+.vscode/
+
+# Node (if used later)
+node_modules/
+.env
