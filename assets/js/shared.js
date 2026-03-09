@@ -221,17 +221,32 @@ function renderSuggestions(items, boxEl, inputEl, coordSetter) {
     const main  = parts[0];
     const sub   = parts.slice(1).join(',').trim();
     div.innerHTML = `<i class="fas fa-map-marker-alt"></i><div><div class="sugg-item-main">${main}</div>${sub ? `<div class="sugg-item-sub">${sub}</div>` : ''}</div>`;
+    // div.addEventListener('mousedown', async (e) => {
+    //   e.preventDefault();
+    //   inputEl.value = desc;
+    //   boxEl.classList.remove('open');
+    //   if (item._coords) {
+    //     coordSetter(item._coords);
+    //   } else if (item.place_id) {
+    //     const coords = await getPlaceCoords(item.place_id);
+    //     if (coords) coordSetter(coords);
+    //   }
+    //   recalcFare();
+    // });
     div.addEventListener('mousedown', async (e) => {
       e.preventDefault();
       inputEl.value = desc;
       boxEl.classList.remove('open');
       if (item._coords) {
         coordSetter(item._coords);
+        recalcFare(); // ← coords ready, calc immediately
       } else if (item.place_id) {
         const coords = await getPlaceCoords(item.place_id);
-        if (coords) coordSetter(coords);
+        if (coords) {
+          coordSetter(coords);
+          recalcFare(); // ← coords ready after await, then calc
+        }
       }
-      recalcFare();
     });
     boxEl.appendChild(div);
   });
