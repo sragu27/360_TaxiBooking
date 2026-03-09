@@ -609,6 +609,9 @@ select.field-input option { background: var(--white); }
   .trip-tabs { flex-wrap: wrap; }
   .trip-tab { font-size: 0.65rem; padding: 0.55rem 0.3rem; }
   .float-group { bottom: 1rem; right: 1rem; }
+  .nav-cta{
+    margin-top: 16px;
+  }
 }
 @media (max-width: 480px) {
   .book-now-btn { font-size: 0.9rem; }

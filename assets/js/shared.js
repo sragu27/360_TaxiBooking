@@ -1,48 +1,12 @@
 /**
- * SWIFTRIDE — shared.js  ✅ FINAL VERSION
- * Notifications: Supabase DB + Telegram Bot + EmailJS + WhatsApp Float
- * Replace all YOUR_XXXX values in CONFIG with your real keys
+ * SWIFTRIDE — shared.js
+ * ⚠️  NO SECRET KEYS HERE — keys are in config.js (gitignored)
+ * This file is safe to push to GitHub
  */
 'use strict';
 
-/* ══════════════════════════════════════════════════════════
-   ⚙️  CONFIG — REPLACE ALL VALUES BELOW WITH YOUR REAL KEYS
-══════════════════════════════════════════════════════════ */
-const CONFIG = {
-
-  // ── Google Places API ──────────────────────────────────
-  // Get free: https://console.cloud.google.com
-  // Enable: Places API + Maps JavaScript API
-  GOOGLE_API_KEY: 'YOUR_GOOGLE_PLACES_API_KEY',
-
-  // ── Supabase ───────────────────────────────────────────
-  // Your Project URL → https://yourproject.supabase.co
-  // Anon Key → Settings → Configuration → API Keys → anon public
-  SUPABASE_URL:      'https://vixcjaqqkvwqobnbnyll.supabase.co',
-  SUPABASE_ANON_KEY: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZpeGNqYXFxa3Z3cW9ibmJueWxsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzI5ODMwMTUsImV4cCI6MjA4ODU1OTAxNX0.m5ZvOuBcVPRnbdSZX6STYdC11Lm30mne_2hpvOPs-Oc',
-
-  // ── Telegram Bot ───────────────────────────────────────
-  // Token → from @BotFather
-  // Chat ID → https://api.telegram.org/botTOKEN/getUpdates
-  TELEGRAM_BOT_TOKEN: '8751208593:AAGEflx6TVIeQXIdhYU8Rz0Znl7iGKFPXZM',
-  TELEGRAM_CHAT_ID:   '6640250980',
-
-  // ── EmailJS ────────────────────────────────────────────
-  // Free 200 emails/month → https://emailjs.com
-  // Service ID, Template ID, Public Key from EmailJS dashboard
-  EMAILJS_SERVICE_ID:  'service_nlnxeic',
-  EMAILJS_TEMPLATE_ID: 'template_kg17hvv',
-  EMAILJS_PUBLIC_KEY:  'JAomeAcKMN5YUHHZT',
-
-  // ── WhatsApp Float Button ──────────────────────────────
-  // Format: country code + number, no + sign
-  WHATSAPP_NUMBER: '919876543210',
-  PHONE:           '+919876543210',
-
-  // ── Fare rates ₹/km ───────────────────────────────────
-  RATES:    { Sedan: 12, SUV: 15, Innova: 18, Tempo: 22 },
-  MIN_FARE: 500,
-};
+// CONFIG is loaded from assets/js/config.js (gitignored)
+// Make sure config.js is loaded BEFORE shared.js in HTML
 
 /* ══════════════════════════════════════════
    STATE VARIABLES
@@ -84,9 +48,6 @@ const TN_CITIES = [
   { name: 'Trichy Airport',                   state: 'Tamil Nadu',     lat: 10.7654, lon: 78.7090 },
 ];
 
-/* ══════════════════════════════════════════
-   POPULAR ROUTE COORDS
-══════════════════════════════════════════ */
 const ROUTE_COORDS = {
   'Chennai':     { lat: 13.0827, lon: 80.2707 },
   'Pondicherry': { lat: 11.9416, lon: 79.8083 },
@@ -103,7 +64,7 @@ const ROUTE_COORDS = {
 };
 
 /* ══════════════════════════════════════════
-   PURE FUNCTIONS (no DOM)
+   PURE FUNCTIONS
 ══════════════════════════════════════════ */
 function haversineKm(lat1, lon1, lat2, lon2) {
   const R = 6371, toRad = d => d * Math.PI / 180;
@@ -189,7 +150,7 @@ function fillRoute(from, to) {
 ══════════════════════════════════════════ */
 async function getPlaceSuggestions(query) {
   if (query.length < 2) return [];
-  if (CONFIG.GOOGLE_API_KEY !== 'YOUR_GOOGLE_PLACES_API_KEY') {
+  if (CONFIG.GOOGLE_API_KEY && CONFIG.GOOGLE_API_KEY !== 'YOUR_GOOGLE_PLACES_API_KEY') {
     try {
       const url = `https://maps.googleapis.com/maps/api/place/autocomplete/json?input=${encodeURIComponent(query)}&components=country:in&types=(cities)&key=${CONFIG.GOOGLE_API_KEY}`;
       const res  = await fetch(url);
@@ -204,16 +165,14 @@ async function getPlaceSuggestions(query) {
 }
 
 async function getPlaceCoords(placeId) {
-  if (CONFIG.GOOGLE_API_KEY !== 'YOUR_GOOGLE_PLACES_API_KEY') {
-    try {
-      const url = `https://maps.googleapis.com/maps/api/place/details/json?place_id=${placeId}&fields=geometry&key=${CONFIG.GOOGLE_API_KEY}`;
-      const res  = await fetch(url);
-      const data = await res.json();
-      if (data.result?.geometry?.location) {
-        return { lat: data.result.geometry.location.lat, lon: data.result.geometry.location.lng };
-      }
-    } catch(e) {}
-  }
+  try {
+    const url = `https://maps.googleapis.com/maps/api/place/details/json?place_id=${placeId}&fields=geometry&key=${CONFIG.GOOGLE_API_KEY}`;
+    const res  = await fetch(url);
+    const data = await res.json();
+    if (data.result?.geometry?.location) {
+      return { lat: data.result.geometry.location.lat, lon: data.result.geometry.location.lng };
+    }
+  } catch(e) {}
   return null;
 }
 
@@ -264,15 +223,10 @@ function setupAutocomplete(inputId, boxId, coordSetter) {
   input.addEventListener('keydown', e => { if (e.key === 'Escape') box.classList.remove('open'); });
 }
 
-/* ══════════════════════════════════════════════════════
-   ✅ NOTIFICATION 1 — SUPABASE
-   Saves every booking to your database
-   View all bookings at supabase.com → Table Editor
-══════════════════════════════════════════════════════ */
+/* ══════════════════════════════════════════
+   SUPABASE — save booking to database
+══════════════════════════════════════════ */
 async function saveToSupabase(b) {
-  // if (!CONFIG.SUPABASE_URL || CONFIG.SUPABASE_URL.includes('https://vixcjaqqkvwqobnbnyll.supabase.co')) {
-  //   console.warn('Supabase not configured'); return 'skipped';
-  // }
   try {
     const res = await fetch(`${CONFIG.SUPABASE_URL}/rest/v1/bookings`, {
       method: 'POST',
@@ -296,29 +250,20 @@ async function saveToSupabase(b) {
         fare:          b.fare,
       })
     });
-    if (res.ok) {
-      console.log('✅ Booking saved to Supabase');
-    } else {
-      const err = await res.text();
-      console.warn('❌ Supabase error:', err);
-    }
+    if (res.ok) console.log('✅ Saved to Supabase');
+    else console.warn('❌ Supabase error:', await res.text());
   } catch(e) {
-    console.warn('❌ Supabase save failed:', e);
+    console.warn('❌ Supabase failed:', e);
   }
 }
 
-/* ══════════════════════════════════════════════════════
-   ✅ NOTIFICATION 2 — TELEGRAM BOT
-   YOU (owner) get instant message when someone books
-   Message arrives in your Telegram app automatically
-══════════════════════════════════════════════════════ */
+/* ══════════════════════════════════════════
+   TELEGRAM — instant owner notification
+══════════════════════════════════════════ */
 async function sendTelegram(b) {
-  // if (!CONFIG.TELEGRAM_BOT_TOKEN || CONFIG.TELEGRAM_BOT_TOKEN.includes('8751208593:AAGEflx6TVIeQXIdhYU8Rz0Znl7iGKFPXZM')) {
-  //   console.warn('Telegram not configured'); return 'skipped';
-  // }
   try {
     const text = [
-      `🚖 <b>NEW BOOKING — 360 Cabs</b>`,
+      `🚖 <b>NEW BOOKING — SwiftRide</b>`,
       `━━━━━━━━━━━━━━━━━━━━`,
       `👤 <b>Name:</b> ${b.name}`,
       `📞 <b>Phone:</b> ${b.phone}`,
@@ -332,7 +277,7 @@ async function sendTelegram(b) {
       `🚗 <b>Cab:</b> ${b.cabType}`,
       `💰 <b>Fare:</b> ${b.fare}`,
       `━━━━━━━━━━━━━━━━━━━━`,
-      `⏰ <b>Booked at:</b> ${b.timestamp}`,
+      `⏰ <b>Booked:</b> ${b.timestamp}`,
     ].filter(Boolean).join('\n');
 
     const res = await fetch(`https://api.telegram.org/bot${CONFIG.TELEGRAM_BOT_TOKEN}/sendMessage`, {
@@ -344,35 +289,18 @@ async function sendTelegram(b) {
         text:       text
       })
     });
-    if (res.ok) {
-      console.log('✅ Telegram notification sent');
-    } else {
-      console.warn('❌ Telegram error:', await res.text());
-    }
+    if (res.ok) console.log('✅ Telegram sent');
+    else console.warn('❌ Telegram error:', await res.text());
   } catch(e) {
     console.warn('❌ Telegram failed:', e);
   }
 }
 
-/* ══════════════════════════════════════════════════════
-   ✅ NOTIFICATION 3 — EMAILJS
-   CUSTOMER gets confirmation email automatically
-   Setup: https://emailjs.com → free 200 emails/month
-   Template variables used:
-     {{passenger_name}}   {{passenger_phone}}
-     {{passenger_email}}  {{trip_type}}
-     {{pickup_location}}  {{drop_location}}
-     {{travel_date}}      {{travel_time}}
-     {{return_date}}      {{cab_type}}
-     {{estimated_fare}}   {{booking_time}}
-══════════════════════════════════════════════════════ */
+/* ══════════════════════════════════════════
+   EMAILJS — customer confirmation email
+══════════════════════════════════════════ */
 async function sendEmail(b) {
-  // if (!CONFIG.EMAILJS_PUBLIC_KEY ||CONFIG.EMAILJS_PUBLIC_KEY.includes('JAomeAcKMN5YUHHZT')) {
-  //   console.warn('EmailJS not configured'); return 'skipped';
-  // }
-  if (!b.email) {
-    console.warn('No customer email provided'); return 'skipped';
-  }
+  if (!b.email) { console.warn('No customer email'); return; }
   try {
     if (typeof emailjs !== 'undefined') {
       emailjs.init(CONFIG.EMAILJS_PUBLIC_KEY);
@@ -390,25 +318,18 @@ async function sendEmail(b) {
         estimated_fare:  b.fare,
         booking_time:    b.timestamp,
       });
-      console.log('✅ Confirmation email sent to customer');
+      console.log('✅ Email sent to customer');
     }
   } catch(e) {
     console.warn('❌ EmailJS failed:', e);
   }
 }
 
-/* ══════════════════════════════════════════════════════
-   ✅ WHATSAPP — Float button only (in HTML)
-   No automatic sending — just the floating button
-   on bottom right corner of every page
-══════════════════════════════════════════════════════ */
-
 /* ══════════════════════════════════════════
-   ALL DOM CODE — INSIDE DOMContentLoaded
+   DOM — DOMContentLoaded
 ══════════════════════════════════════════ */
 document.addEventListener('DOMContentLoaded', function () {
 
-  /* ── Navbar scroll ── */
   const navbar = document.getElementById('navbar');
   if (navbar) {
     window.addEventListener('scroll', () => {
@@ -416,7 +337,6 @@ document.addEventListener('DOMContentLoaded', function () {
     }, { passive: true });
   }
 
-  /* ── Smooth scroll ── */
   document.querySelectorAll('a[href^="#"]').forEach(a => {
     a.addEventListener('click', function (e) {
       const target = document.querySelector(this.getAttribute('href'));
@@ -429,7 +349,6 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   });
 
-  /* ── Scroll reveal ── */
   const revealObs = new IntersectionObserver((entries) => {
     entries.forEach(e => {
       if (e.isIntersecting) { e.target.classList.add('in-view'); revealObs.unobserve(e.target); }
@@ -437,14 +356,12 @@ document.addEventListener('DOMContentLoaded', function () {
   }, { threshold: 0.08, rootMargin: '0px 0px -20px 0px' });
   document.querySelectorAll('.reveal-up, .reveal-left, .reveal-right').forEach(el => revealObs.observe(el));
 
-  /* ── Hero animate ── */
   window.addEventListener('load', () => {
     document.querySelectorAll('.hero-animate').forEach((el, i) => {
       setTimeout(() => el.classList.add('in-view'), 150 + i * 120);
     });
   });
 
-  /* ── Active nav link ── */
   const currentPage = window.location.pathname.split('/').pop() || 'index.html';
   document.querySelectorAll('.nav-link-custom').forEach(link => {
     const href = link.getAttribute('href');
@@ -453,7 +370,6 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   });
 
-  /* ── Trip tabs ── */
   const tripTabsEl = document.querySelector('.trip-tabs');
   if (tripTabsEl) {
     tripTabsEl.addEventListener('click', function (e) {
@@ -478,7 +394,6 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 
-  /* ── Cab grid ── */
   const cabGridEl = document.querySelector('.cab-grid');
   if (cabGridEl) {
     cabGridEl.addEventListener('click', function (e) {
@@ -492,11 +407,9 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 
-  /* ── Location autocomplete ── */
   setupAutocomplete('pickupInput', 'pickupBox', c => { pickupCoords = c; });
   setupAutocomplete('dropInput',   'dropBox',   c => { dropCoords   = c; });
 
-  /* ── Swap button ── */
   const swapBtn = document.getElementById('swapBtn');
   if (swapBtn) {
     swapBtn.addEventListener('click', () => {
@@ -509,23 +422,11 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 
-  /* ── Date defaults ── */
   ['travelDate', 'returnDate'].forEach(id => {
     const el = document.getElementById(id);
     if (el) { el.min = todayStr; if (id === 'travelDate') el.value = todayStr; }
   });
 
-  /* ══════════════════════════════════════════════════════
-     ✅ BOOKING FORM SUBMIT
-     Order of operations:
-     1. Validate form fields
-     2. Show loading on button
-     3. Save to Supabase (your database)
-     4. Send Telegram to you (owner notification)
-     5. Send Email to customer (confirmation)
-     6. Show success toast
-     7. Reset form
-  ══════════════════════════════════════════════════════ */
   const bookingForm = document.getElementById('bookingForm');
   if (bookingForm) {
     bookingForm.addEventListener('submit', async function (e) {
@@ -540,7 +441,6 @@ document.addEventListener('DOMContentLoaded', function () {
       const time   = document.getElementById('travelTime')?.value;
       const ret    = document.getElementById('returnDate')?.value || '';
 
-      // Validate
       if (!name || !phone || !pickup || !date || !time) {
         showAlert('Please fill all required fields.', 'error'); return;
       }
@@ -551,21 +451,15 @@ document.addEventListener('DOMContentLoaded', function () {
       const fareInfo  = recalcFare();
       const cab       = getSelectedCab();
       const tripLabel = {
-        oneway:    'One Way Drop',
-        roundtrip: 'Round Trip',
-        airport:   'Airport Transfer',
-        hourly:    'Hourly Package'
+        oneway: 'One Way Drop', roundtrip: 'Round Trip',
+        airport: 'Airport Transfer', hourly: 'Hourly Package'
       }[currentTrip];
 
       const booking = {
-        name,
-        phone,
-        email,
-        pickup,
+        name, phone, email, pickup,
         drop:       drop || 'N/A',
         tripType:   tripLabel,
-        date,
-        time,
+        date, time,
         returnDate: ret || 'N/A',
         cabType:    cab.name,
         fare:       fareInfo
@@ -574,30 +468,18 @@ document.addEventListener('DOMContentLoaded', function () {
         timestamp:  new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' })
       };
 
-      // Disable button — show loading
       const btn = document.getElementById('bookBtn');
-      if (btn) {
-        btn.disabled = true;
-        btn.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>Confirming your booking...';
-      }
+      if (btn) { btn.disabled = true; btn.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>Confirming...'; }
 
-      // Fire all 3 notifications together
       await Promise.allSettled([
-        saveToSupabase(booking),  // → your database
-        sendTelegram(booking),    // → your telegram
-        sendEmail(booking),       // → customer email
+        saveToSupabase(booking),
+        sendTelegram(booking),
+        sendEmail(booking),
       ]);
 
-      // Re-enable button
-      if (btn) {
-        btn.disabled = false;
-        btn.innerHTML = '<i class="fas fa-bolt me-2"></i>Book Now — Instant Confirm';
-      }
+      if (btn) { btn.disabled = false; btn.innerHTML = '<i class="fas fa-bolt me-2"></i>Book Now — Instant Confirm'; }
 
-      // Show success toast
       showToast();
-
-      // Reset form
       this.reset();
       pickupCoords = dropCoords = null;
       currentTrip = 'oneway';
@@ -612,7 +494,6 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 
-  /* ── Counter animation ── */
   const counterObs = new IntersectionObserver((entries) => {
     entries.forEach(e => {
       if (e.isIntersecting) { animateCounter(e.target); counterObs.unobserve(e.target); }
@@ -621,23 +502,4 @@ document.addEventListener('DOMContentLoaded', function () {
   document.querySelectorAll('[data-target]').forEach(el => counterObs.observe(el));
 
   console.log('%c✅ SwiftRide — Ready!', 'color:#336184;font-weight:bold;font-size:14px;');
-  console.log('%c⚙️  Replace dummy keys in CONFIG at top of shared.js', 'color:#f4c02d;font-size:11px;');
-
-
-
-// console.log(CONFIG)
-// saveToSupabase({
-//   name: 'Test', phone: '9876543210', email: 'test@gmail.com',
-//   tripType: 'One Way', pickup: 'Chennai', drop: 'Madurai',
-//   date: '2025-03-10', time: '09:00', returnDate: 'N/A',
-//   cabType: 'Sedan', fare: '~₹5,520', timestamp: 'now'
-// })
-// sendTelegram({
-//   name: 'Test', phone: '9876543210', email: 'test@gmail.com',
-//   tripType: 'One Way', pickup: 'Chennai', drop: 'Madurai',
-//   date: '2025-03-10', time: '09:00', returnDate: 'N/A',
-//   cabType: 'Sedan', fare: '~₹5,520', timestamp: 'now'
-// })
-
-
-}); // end DOMContentLoaded
+});
