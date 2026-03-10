@@ -4,6 +4,7 @@
    Global styles are in assets/css/main.css
 ═══════════════════════════════════════════════════════════ */
 
+
 #hero {
       background: linear-gradient(135deg, var(--navy-deeper) 0%, var(--navy) 60%, #2a5a7c 100%);
       min-height: 100svh; display: flex; align-items: center;

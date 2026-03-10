@@ -1,0 +1,27 @@
+
+    .price-table { width:100%;border-collapse:collapse;background:var(--white); }
+    .price-table th { background:var(--navy);color:var(--white);font-family:var(--ff-display);font-size:.82rem;font-weight:700;padding:1rem 1.2rem;text-align:left;white-space:nowrap; }
+    .price-table td { padding:.9rem 1.2rem;border-bottom:1px solid var(--border);font-size:.88rem;vertical-align:middle; }
+    .price-table tr:last-child td { border-bottom:none; }
+    .price-table tr:hover td { background:var(--navy-pale); }
+    .price-table .route-col { font-weight:700;color:var(--text-dark); }
+    .price-table .km-col { color:var(--text-light); }
+    .price-table .price-col { font-family:var(--ff-display);font-weight:800;color:var(--navy); }
+    .table-wrap { border:2px solid var(--border);border-radius:var(--radius-lg);overflow:hidden;box-shadow:var(--shadow-sm); }
+    .cab-price-card { background:var(--white);border:2px solid var(--border);border-radius:var(--radius-lg);padding:2rem;text-align:center;transition:all var(--transition); }
+    .cab-price-card:hover,.cab-price-card.featured { border-color:var(--navy);box-shadow:var(--shadow-md); }
+    .cab-price-card.featured { background:var(--navy); }
+    .cab-price-card.featured * { color:var(--white) !important; }
+    .cab-price-card.featured .per-km { color:var(--gold) !important; }
+    .cab-icon { font-size:2.5rem;color:var(--navy);margin-bottom:1rem; }
+    .cab-price-card.featured .cab-icon { color:var(--gold) !important; }
+    .cab-type-name { font-family:var(--ff-display);font-size:1.2rem;font-weight:800;color:var(--text-dark);margin-bottom:.3rem; }
+    .per-km { font-family:var(--ff-display);font-size:2rem;font-weight:800;color:var(--navy);line-height:1; }
+    .per-km-label { font-size:.72rem;color:var(--text-light);margin-top:.2rem; }
+    .cab-includes { list-style:none;margin:.8rem 0 0;font-size:.8rem;color:var(--text);text-align:left; }
+    .cab-includes li { padding:.25rem 0;display:flex;gap:.5rem; }
+    .cab-includes li i { color:var(--navy);font-size:.75rem;margin-top:3px;flex-shrink:0; }
+    .cab-price-card.featured .cab-includes li i { color:var(--gold) !important; }
+    .inc-tag { display:inline-block;background:var(--navy-pale);color:var(--navy);font-size:.62rem;font-weight:700;padding:.2rem .6rem;border-radius:50px;border:1px solid var(--navy-light); }
+    .excl-tag { display:inline-block;background:#fff3cd;color:#856404;font-size:.62rem;font-weight:700;padding:.2rem .6rem;border-radius:50px;border:1px solid #ffc107; }
+  

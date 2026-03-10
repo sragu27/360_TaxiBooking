@@ -1,0 +1,84 @@
+
+    .fleet-card { 
+        background:var(--white);
+        border:2px solid var(--border);
+        border-radius:var(--radius-lg);
+        overflow:hidden;transition:all var(--transition);
+     }
+    .fleet-card:hover { 
+        border-color:var(--navy);
+        box-shadow:var(--shadow-lg);
+        transform:translateY(-5px); 
+    }
+    .fleet-img { 
+        height:220px;
+        overflow:hidden;
+     }
+    .fleet-img img {
+         width:100%;
+         height:100%;
+         object-fit:cover;
+         transition:transform .5s;
+         }
+    .fleet-card:hover .fleet-img img {
+         transform:scale(1.05); 
+        }
+    .fleet-body { 
+        padding:1.5rem;
+     }
+    .fleet-name 
+    { 
+        font-family:var(--ff-display);
+        font-size:1.3rem;
+        font-weight:800;
+        color:var(--text-dark);
+        margin-bottom:.3rem;
+     }
+    .fleet-models { 
+        font-size:.78rem;
+        color:var(--text-light);
+        margin-bottom:1rem; 
+    }
+    .fleet-specs { 
+        display:flex;
+        flex-wrap:wrap;
+        gap:.7rem;
+        margin-bottom:1rem; 
+    }
+    .fleet-spec {
+         display:flex;
+         align-items:center;
+         gap:.35rem;
+         font-size:.78rem;
+         font-weight:600;
+         color:var(--text-dark);
+         background:var(--off-white);
+         padding:.3rem .7rem;
+         border-radius:50px;
+         border:1px solid var(--border); 
+        }
+    .fleet-spec i { 
+        color:var(--navy);
+        font-size:.72rem; 
+    }
+    .fleet-rate {
+         font-family:var(--ff-display);
+         font-size:1.6rem;
+         font-weight:800;
+         color:var(--navy); 
+        }
+    .fleet-rate small {
+         font-size:.75rem;
+         color:var(--text-light);
+         font-weight:400;
+         }
+    .popular-badge { 
+        background:var(--gold);
+        color:var(--text-dark);
+        font-size:.62rem;
+        font-weight:800;
+        letter-spacing:.1em;
+        text-transform:uppercase;
+        padding:.3rem .8rem;
+        border-radius:50px;
+     }

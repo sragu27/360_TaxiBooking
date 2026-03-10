@@ -6,7 +6,12 @@
 'use strict';
 
 // CONFIG is loaded from assets/js/config.js (gitignored)
-// Make sure config.js is loaded BEFORE shared.js in HTML
+// Make sure config.js is loaded BEFORE shared.js in HTML 200 emails per month free limit on EmailJS,
+//Paid plan: $15/month (~₹1200) ; 10,000 emails/month
+
+
+
+
 
 /* ══════════════════════════════════════════
    STATE VARIABLES
