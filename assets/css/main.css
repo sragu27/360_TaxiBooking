@@ -686,6 +686,9 @@ select.field-input option { background: var(--white); }
   .home-wrapper{
     flex-direction: column-reverse;
   }
+  .page-hero{
+    padding-top: 96px;
+  }
 }
 @media (max-width: 480px) {
   .book-now-btn { font-size: 0.9rem; }
