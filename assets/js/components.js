@@ -17,8 +17,8 @@ const HEADER = `
 <!-- NAVBAR -->
     <nav id="navbar" class="navbar navbar-expand-lg fixed-top">
         <div class="container">
-            <a class="navbar-brand" href="/">
-            <img class="navbar-logo" src="/assets/images/logo.png" alt="">
+            <a class="navbar-brand" href="index.html">
+            <img class="navbar-logo" src="assets/images/logo.png" alt="">
             <!-- <div class="brand-logo"><i class="fas fa-bolt"></i></div>
             <div class="brand-text-wrap">
                 <span class="brand-name">Swift<span>Ride</span></span>
@@ -30,12 +30,12 @@ const HEADER = `
             </button>
             <div class="collapse navbar-collapse justify-content-end" id="navMenu">
             <ul class="navbar-nav align-items-lg-center gap-lg-1">
-                <li class="nav-item"><a class="nav-link-custom nav-link" href="/">Home</a></li>
-                <li class="nav-item"><a class="nav-link-custom nav-link" href="/pages/services.html">Services</a></li>
-                <li class="nav-item"><a class="nav-link-custom nav-link" href="/pages/fleet.html">Fleet</a></li>
-                <li class="nav-item"><a class="nav-link-custom nav-link" href="/pages/tariff.html">Tariff</a></li>
-                <li class="nav-item"><a class="nav-link-custom nav-link" href="/pages/about.html">About</a></li>
-                <li class="nav-item"><a class="nav-link-custom nav-link" href="/pages/contact.html">Contact</a></li>
+                <li class="nav-item"><a class="nav-link-custom nav-link" href="index.html">Home</a></li>
+                <li class="nav-item"><a class="nav-link-custom nav-link" href="pages/services.html">Services</a></li>
+                <li class="nav-item"><a class="nav-link-custom nav-link" href="pages/fleet.html">Fleet</a></li>
+                <li class="nav-item"><a class="nav-link-custom nav-link" href="pages/tariff.html">Tariff</a></li>
+                <li class="nav-item"><a class="nav-link-custom nav-link" href="pages/about.html">About</a></li>
+                <li class="nav-item"><a class="nav-link-custom nav-link" href="pages/contact.html">Contact</a></li>
                 <li class="nav-item ms-lg-2"><a href="tel:+919876543210" class="nav-phone-btn"><i class="fas fa-phone-alt"></i> Call Now</a></li>
                 <li class="nav-item ms-lg-1"><a href="#booking" class="nav-link nav-cta">Book Now</a></li>
             </ul>
