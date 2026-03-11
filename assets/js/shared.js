@@ -10,6 +10,12 @@
 //Paid plan: $15/month (~₹1200) ; 10,000 emails/month
 
 
+// Safe fallback if config.js is not loaded
+if (typeof CONFIG === "undefined") {
+  var CONFIG = {
+    MIN_FARE: 500
+  };
+}
 
 
 
