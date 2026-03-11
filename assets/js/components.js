@@ -31,11 +31,11 @@ const HEADER = `
             <div class="collapse navbar-collapse justify-content-end" id="navMenu">
             <ul class="navbar-nav align-items-lg-center gap-lg-1">
                 <li class="nav-item"><a class="nav-link-custom nav-link" href="index.html">Home</a></li>
-                <li class="nav-item"><a class="nav-link-custom nav-link" href="pages/services.html">Services</a></li>
-                <li class="nav-item"><a class="nav-link-custom nav-link" href="pages/fleet.html">Fleet</a></li>
-                <li class="nav-item"><a class="nav-link-custom nav-link" href="pages/tariff.html">Tariff</a></li>
-                <li class="nav-item"><a class="nav-link-custom nav-link" href="pages/about.html">About</a></li>
-                <li class="nav-item"><a class="nav-link-custom nav-link" href="pages/contact.html">Contact</a></li>
+                <li class="nav-item"><a class="nav-link-custom nav-link" href="/pages/services.html">Services</a></li>
+                <li class="nav-item"><a class="nav-link-custom nav-link" href="/pages/fleet.html">Fleet</a></li>
+                <li class="nav-item"><a class="nav-link-custom nav-link" href="/pages/tariff.html">Tariff</a></li>
+                <li class="nav-item"><a class="nav-link-custom nav-link" href="/pages/about.html">About</a></li>
+                <li class="nav-item"><a class="nav-link-custom nav-link" href="/pages/contact.html">Contact</a></li>
                 <li class="nav-item ms-lg-2"><a href="tel:+919876543210" class="nav-phone-btn"><i class="fas fa-phone-alt"></i> Call Now</a></li>
                 <li class="nav-item ms-lg-1"><a href="#booking" class="nav-link nav-cta">Book Now</a></li>
             </ul>
