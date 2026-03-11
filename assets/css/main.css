@@ -109,7 +109,8 @@ body {
   font-family: var(--ff-body);
   font-size: 16px;
   line-height: 1.7;
-  overflow-x: hidden;
+  overflow-x: clip;
+  width: 100%;
 }
 img { max-width: 100%; display: block; }
 a { text-decoration: none; color: inherit; }
@@ -405,7 +406,7 @@ select.field-input option { background: var(--white); }
   font-size: 0.85rem; color: var(--text-dark);
   border-bottom: 1px solid var(--border);
   display: flex; align-items: flex-start; gap: 0.7rem;
-  transition: background 0.2s;
+  transition: background-color 0.2s;
 }
 .sugg-item:last-child { border-bottom: none; }
 .sugg-item:hover { background: var(--navy-pale); }
@@ -687,7 +688,8 @@ select.field-input option { background: var(--white); }
     flex-direction: column-reverse;
   }
   .page-hero{
-    padding-top: 96px;
+    padding-top: 120px;
+     overflow-x: clip;
   }
 }
 @media (max-width: 480px) {
