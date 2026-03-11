@@ -31,13 +31,13 @@ const HEADER = `
             <div class="collapse navbar-collapse justify-content-end" id="navMenu">
             <ul class="navbar-nav align-items-lg-center gap-lg-1">
                 <li class="nav-item"><a class="nav-link-custom nav-link" href="index.html">Home</a></li>
-                <li class="nav-item"><a class="nav-link-custom nav-link" href="../pages/services.html">Services</a></li>
-                <li class="nav-item"><a class="nav-link-custom nav-link" href="../pages/fleet.html">Fleet</a></li>
-                <li class="nav-item"><a class="nav-link-custom nav-link" href="../pages/tariff.html">Tariff</a></li>
-                <li class="nav-item"><a class="nav-link-custom nav-link" href="../pages/about.html">About</a></li>
-                <li class="nav-item"><a class="nav-link-custom nav-link" href="../pages/contact.html">Contact</a></li>
+                <li class="nav-item"><a class="nav-link-custom nav-link" href="services.html">Services</a></li>
+                <li class="nav-item"><a class="nav-link-custom nav-link" href="fleet.html">Fleet</a></li>
+                <li class="nav-item"><a class="nav-link-custom nav-link" href="tariff.html">Tariff</a></li>
+                <li class="nav-item"><a class="nav-link-custom nav-link" href="about.html">About</a></li>
+                <li class="nav-item"><a class="nav-link-custom nav-link" href="contact.html">Contact</a></li>
                 <li class="nav-item ms-lg-2"><a href="tel:+919876543210" class="nav-phone-btn"><i class="fas fa-phone-alt"></i> Call Now</a></li>
-                <li class="nav-item ms-lg-1"><a href="#booking" class="nav-link nav-cta">Book Now</a></li>
+                <li class="nav-item ms-lg-1"><a href="index.html#booking" class="nav-link nav-cta">Book Now</a></li>
             </ul>
             </div>
         </div>
@@ -51,7 +51,7 @@ const FOOTER = `
     <div class="row g-4">
       <div class="col-lg-4">
         <div class="footer-brand">
-          <img class="navbar-logo" src="/assets/images/logo.png" alt="">
+          <img class="navbar-logo" src="assets/images/logo.png" alt="">
           <!-- <div class="brand-logo"><i class="fas fa-bolt"></i></div>
           <div class="brand-text-wrap"><span class="brand-name" style="color:var(--white)">Swift<span>Ride</span></span>
             <span class="brand-tag">Outstation Taxi</span>
@@ -62,12 +62,12 @@ const FOOTER = `
       </div>
       <div class="col-sm-6 col-lg-2"><div class="footer-h">Pages</div>
       <ul class="footer-ul">
-      <li><a href="/">Home</a></li>
-      <li><a href="/pages/services.html">Services</a></li>
-      <li><a href="/pages/fleet.html">Fleet</a></li>
-      <li><a href="/pages/tariff.html">Tariff</a></li>
-      <li><a href="/pages/about.html">About Us</a></li>
-      <li><a href="/pages/contact.html">Contact</a></li>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="fleet.html">Fleet</a></li>
+      <li><a href="tariff.html">Tariff</a></li>
+      <li><a href="about.html">About Us</a></li>
+      <li><a href="contact.html">Contact</a></li>
       </ul>
       </div>
       <div class="col-sm-6 col-lg-3">
@@ -131,19 +131,41 @@ function initNavbar() {
 
 /* ---------------- ACTIVE PAGE ---------------- */
 
+// function highlightActivePage() {
+
+//   const links = document.querySelectorAll(".nav-link-custom");
+//   const current = window.location.pathname;
+
+//   links.forEach(link => {
+
+//     const linkPath = new URL(link.href).pathname;
+
+//     if (
+//       current === linkPath ||
+//       (current === "/" && linkPath === "/")
+//     ) {
+//       link.classList.add("active-page");
+//     }
+
+//   });
+
+// }
+
 function highlightActivePage() {
 
   const links = document.querySelectorAll(".nav-link-custom");
-  const current = window.location.pathname;
+
+  let currentPage = window.location.pathname.split("/").pop();
+
+  if (currentPage === "") {
+    currentPage = "index.html";
+  }
 
   links.forEach(link => {
 
-    const linkPath = new URL(link.href).pathname;
+    const linkPage = link.getAttribute("href");
 
-    if (
-      current === linkPath ||
-      (current === "/" && linkPath === "/")
-    ) {
+    if (linkPage === currentPage) {
       link.classList.add("active-page");
     }
 
