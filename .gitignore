@@ -1,5 +1,5 @@
 # ⚠️ SECRET KEYS — NEVER PUSH TO GITHUB
-assets/js/config.js
+#assets/js/config.js  
 
 # System files
 .DS_Store
