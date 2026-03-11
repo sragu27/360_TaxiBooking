@@ -561,9 +561,3 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 
-document.querySelectorAll('*').forEach(el => {
-  const s = getComputedStyle(el);
-  if(s.overflow === 'hidden' || s.overflowX === 'hidden') {
-    console.log('overflow hidden on:', el);
-  }
-})

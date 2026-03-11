@@ -691,6 +691,15 @@ select.field-input option { background: var(--white); }
     padding-top: 120px;
      overflow-x: clip;
   }
+
+  .reveal-left,
+  .reveal-right,
+  .reveal-up {
+    transform: none !important;
+    opacity: 1 !important;
+    transition: none !important;
+  }
+
 }
 @media (max-width: 480px) {
   .book-now-btn { font-size: 0.9rem; }
