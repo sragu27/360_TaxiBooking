@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link rel="stylesheet" href="../assets/images/favicon.ico">
+  <title>Admin Login - 360 Cabs</title>
+
+  <!-- <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet"> -->
+  <link rel="stylesheet" href="../assets/css/main.css"/>
+  
+  <link rel="stylesheet" href="../assets/css/admin-login.css">
+
+</head>
+
+<body>
+
+<!-- LEFT PANEL -->
+
+<div class="left">
+  <h1>🚖 360 Cabs</h1>
+  <p>
+    Manage bookings, track rides, and control your taxi business
+    with a powerful admin dashboard.
+  </p>
+</div>
+
+<!-- RIGHT PANEL -->
+
+<div class="right">
+  <div class="login-box">
+
+```
+<h2>Admin Login</h2>
+
+<input id="email" class="input" placeholder="Email">
+<input id="password" type="password" class="input" placeholder="Password">
+
+<button class="btn" onclick="login()">Login</button>
+
+<div id="error" class="error">Invalid credentials</div>
+```
+
+  </div>
+</div>
+
+
+<script src="../assets/js/config.js"></script>
+<!-- <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script> -->
+
+<script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+
+
+<script>
+if (!window.mySupabase) {
+  window.mySupabase = window.supabase.createClient(
+    CONFIG.SUPABASE_URL,
+    CONFIG.SUPABASE_ANON_KEY
+  );
+}
+
+const client = window.mySupabase;
+
+window.login = async function () {
+  const email = document.getElementById("email").value.trim();
+  const password = document.getElementById("password").value.trim();
+
+  const { data, error } = await client.auth.signInWithPassword({
+    email,
+    password
+  });
+
+  if (error) {
+    document.getElementById("error").innerText = error.message;
+    document.getElementById("error").style.display = "block";
+    return;
+  }
+
+  if (data?.user) {
+    window.location.href = "./admin.html";
+  }
+};
+</script>
+
+</body>
+</html>

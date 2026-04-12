@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard - 360 Cabs</title>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body style="background:#f5f7fb;">
+
+
+
+<div class="container py-4">
+
+  <!-- HEADER -->
+
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h4>🚖 360 Cabs Dashboard</h4>
+    <button class="btn btn-danger btn-sm" onclick="logout()">Logout</button>
+  </div>
+
+  <!-- STATS -->
+
+  <div class="row mb-4">
+    <div class="col-md-4 mb-3">
+      <div class="card p-3 shadow-sm">
+        <h6>Total Bookings</h6>
+        <h3 id="total">0</h3>
+      </div>
+    </div>
+    <div class="col-md-4 mb-3">
+      <div class="card p-3 shadow-sm">
+        <h6>Today Bookings</h6>
+        <h3 id="today">0</h3>
+      </div>
+    </div>
+    <div class="col-md-4 mb-3">
+      <div class="card p-3 shadow-sm">
+        <h6>Pending</h6>
+        <h3 id="pending">0</h3>
+      </div>
+    </div>
+  </div>
+
+  <!-- TABLE -->
+
+  <div class="card shadow-sm">
+    <div class="table-responsive">
+      <table class="table table-bordered align-middle">
+        <thead class="table-dark">
+          <tr>
+            <th>Name</th>
+            <th>Phone</th>
+            <th>Trip</th>
+            <th>Date</th>
+            <th>Cab</th>
+            <th>Status</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody id="tableBody"></tbody>
+      </table>
+    </div>
+  </div>
+
+</div>
+
+<script src="../assets/js/config.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+
+<script>
+const client  = window.supabase.createClient(
+  CONFIG.SUPABASE_URL,
+  CONFIG.SUPABASE_ANON_KEY
+);
+
+//  Auth check
+async function checkAuth() {
+  const { data } = await client.auth.getUser();
+
+  if (!data.user) {
+    window.location.href = "admin-login.html";
+  }
+}
+
+checkAuth();
+
+
+// LOGOUT
+async function logout() {
+  await client.auth.signOut();
+  window.location.href = "admin-login.html";
+}
+
+// LOAD BOOKINGS
+async function loadBookings() {
+  const { data, error } = await client 
+    .from('bookings')
+    .select('*')
+    .order('id', { ascending: false });
+
+  if (error) {
+    console.error("❌ Supabase error:", error);
+    return;
+  }
+
+  console.log("✅ Data:", data);
+
+  renderTable(data);
+  calculateStats(data);
+}
+
+
+
+// RENDER TABLE
+function renderTable(data) {
+  const tbody = document.getElementById("tableBody");
+  tbody.innerHTML = "";
+
+  data.forEach(b => {
+    const row = `
+      <tr>
+        <td>${b.name}</td>
+        <td>${b.phone}</td>
+        <td>${b.pickup} → ${b.drop_location}</td>
+        <td>${b.date}</td>
+        <td>${b.cab_type}</td>
+        <td>
+          <span class="badge ${
+            b.status === 'completed' ? 'bg-success' :
+            b.status === 'cancelled' ? 'bg-danger' :
+            'bg-warning text-dark'
+          }">
+            ${b.status}
+          </span>
+        </td>
+        <td>
+          <button class="btn btn-success btn-sm me-1"
+            onclick="updateStatus(${b.id}, 'completed')">✔</button>
+          <button class="btn btn-danger btn-sm"
+            onclick="updateStatus(${b.id}, 'cancelled')">✖</button>
+        </td>
+      </tr>
+    `;
+    tbody.innerHTML += row;
+  });
+}
+
+// UPDATE STATUS
+async function updateStatus(id, status) {
+  await client 
+    .from('bookings')
+    .update({ status })
+    .eq('id', id);
+
+  loadBookings();
+}
+
+// STATS
+function calculateStats(data) {
+  const todayStr = new Date().toLocaleDateString('en-CA', {
+    timeZone: 'Asia/Kolkata'
+  });
+
+  document.getElementById("total").innerText = data.length;
+
+  const todayCount = data.filter(b => {
+    const bookingDate = b.date.split('T')[0]; // 🔥 FIX
+    return bookingDate === todayStr;
+  }).length;
+
+  document.getElementById("today").innerText = todayCount;
+
+  document.getElementById("pending").innerText =
+    data.filter(b => b.status === 'pending').length;
+
+  console.log("Today:", todayStr);
+  console.log("Processed dates:", data.map(b => b.date.split('T')[0]));
+}
+
+// INIT
+loadBookings();
+
+//auto refresh live changes
+
+client
+  .channel('bookings-changes')
+  .on(
+    'postgres_changes',
+    { event: '*', schema: 'public', table: 'bookings' },
+    payload => {
+      console.log('🔄 Change detected:', payload);
+      loadBookings();
+    }
+  )
+  .subscribe();
+
+
+
+</script>
+
+</body>
+</html>

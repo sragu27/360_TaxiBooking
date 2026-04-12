@@ -78,8 +78,8 @@ const FOOTER = `
       <div class="col-lg-3">
       <div class="footer-h">Contact Us</div>
       <ul class="footer-ul">
-      <li><i class="fas fa-phone-alt"></i><a href="tel:+919876543210">+91 98765 43210</a></li>
-      <li><i class="fab fa-whatsapp"></i><a href="https://wa.me/919876543210">WhatsApp Us</a></li>
+      <li><i class="fas fa-phone-alt"></i><a href="tel:+919962966606">+91 9962966606</a></li>
+      <li><i class="fab fa-whatsapp"></i><a href="https://wa.me/919962966606">WhatsApp Us</a></li>
       <li><i class="fas fa-envelope"></i>
       <a href="/cdn-cgi/l/email-protection#264449494d4f4841556655514f4052544f4243084f48">
       <span class="__cf_email__" data-cfemail="83e1ecece8eaede4f0c3f0f4eae5f7f1eae7e6adeaed">

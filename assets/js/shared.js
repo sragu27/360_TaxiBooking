@@ -350,34 +350,60 @@ async function sendTelegram(b) {
   }
 }
 
+
+async function sendEmail(b) {
+  if (!b.email) return;
+
+  try {
+    const res = await fetch(CONFIG.RESEND_EMAIL_URL, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'apikey': CONFIG.SUPABASE_ANON_KEY,
+        'Authorization': `Bearer ${CONFIG.SUPABASE_ANON_KEY}`,
+      },
+      body: JSON.stringify(b),
+    });
+
+    if (res.ok) {
+      console.log('✅ Email sent');
+    } else {
+      console.warn('❌ Email failed');
+      console.log(await res.text());
+    }
+  } catch (e) {
+    console.warn('❌ Error sending email:', e);
+  }
+}
+
 /* ══════════════════════════════════════════
    EMAILJS — customer confirmation email
 ══════════════════════════════════════════ */
-async function sendEmail(b) {
-  if (!b.email) { console.warn('No customer email'); return; }
-  try {
-    if (typeof emailjs !== 'undefined') {
-      emailjs.init(CONFIG.EMAILJS_PUBLIC_KEY);
-      await emailjs.send(CONFIG.EMAILJS_SERVICE_ID, CONFIG.EMAILJS_TEMPLATE_ID, {
-        passenger_name:  b.name,
-        passenger_phone: b.phone,
-        passenger_email: b.email,
-        trip_type:       b.tripType,
-        pickup_location: b.pickup,
-        drop_location:   b.drop,
-        travel_date:     b.date,
-        travel_time:     b.time,
-        return_date:     b.returnDate,
-        cab_type:        b.cabType,
-        estimated_fare:  b.fare,
-        booking_time:    b.timestamp,
-      });
-      console.log('✅ Email sent to customer');
-    }
-  } catch(e) {
-    console.warn('❌ EmailJS failed:', e);
-  }
-}
+// async function sendEmail(b) {
+//   if (!b.email) { console.warn('No customer email'); return; }
+//   try {
+//     if (typeof emailjs !== 'undefined') {
+//       emailjs.init(CONFIG.EMAILJS_PUBLIC_KEY);
+//       await emailjs.send(CONFIG.EMAILJS_SERVICE_ID, CONFIG.EMAILJS_TEMPLATE_ID, {
+//         passenger_name:  b.name,
+//         passenger_phone: b.phone,
+//         passenger_email: b.email,
+//         trip_type:       b.tripType,
+//         pickup_location: b.pickup,
+//         drop_location:   b.drop,
+//         travel_date:     b.date,
+//         travel_time:     b.time,
+//         return_date:     b.returnDate,
+//         cab_type:        b.cabType,
+//         estimated_fare:  b.fare,
+//         booking_time:    b.timestamp,
+//       });
+//       console.log('✅ Email sent to customer');
+//     }
+//   } catch(e) {
+//     console.warn('❌ EmailJS failed:', e);
+//   }
+// }
 
 /* ══════════════════════════════════════════
    DOM — DOMContentLoaded
@@ -423,6 +449,8 @@ document.addEventListener('DOMContentLoaded', function () {
       link.classList.add('active-page');
     }
   });
+
+  // Booking widget interactions
 
   const tripTabsEl = document.querySelector('.trip-tabs');
   if (tripTabsEl) {
@@ -555,7 +583,10 @@ document.addEventListener('DOMContentLoaded', function () {
   }, { threshold: 0.5 });
   document.querySelectorAll('[data-target]').forEach(el => counterObs.observe(el));
 
-  console.log('%c✅ SwiftRide — Ready!', 'color:#336184;font-weight:bold;font-size:14px;');
+  console.log('%c✅ 360Cabs — Ready!', 'color:#336184;font-weight:bold;font-size:14px;');
+
+  console.log("KEY:", CONFIG.SUPABASE_ANON_KEY);
+  
 });
 
 
