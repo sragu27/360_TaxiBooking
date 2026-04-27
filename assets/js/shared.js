@@ -1105,6 +1105,23 @@ window.initGoogleMaps = function () {
   initAutocomplete();
 };
 
+// contact page FAQ
+function toggleFaq(el) {
+
+  const item = el.parentElement;
+
+  document.querySelectorAll('.faq-item').forEach(faq => {
+
+    if (faq !== item) {
+      faq.classList.remove('active');
+    }
+
+  });
+
+  item.classList.toggle('active');
+
+}
+
 
 
 

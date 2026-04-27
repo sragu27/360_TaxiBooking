@@ -148,3 +148,10 @@
          transform:rotate(180deg);
          }
  
+.faq-a {
+  display: none;
+}
+
+.faq-item.active .faq-a {
+  display: block;
+}

@@ -84,7 +84,7 @@ const FOOTER = `
       <a href="/cdn-cgi/l/email-protection#264449494d4f4841556655514f4052544f4243084f48">
       <span class="__cf_email__" data-cfemail="83e1ecece8eaede4f0c3f0f4eae5f7f1eae7e6adeaed">
        360cabsonewaydroptaxi@gmail.com</span></a></li>
-      <li><i class="fas fa-map-marker-alt"></i>No. 12, Anna Salai, Chennai - 600002</li>
+      <li><i class="fas fa-map-marker-alt"></i>Chromepet, Chennai - 600044</li>
       <li><i class="fas fa-clock"></i>Available 24 hours, 7 days</li>
       </ul>
       </div>
