@@ -92,7 +92,7 @@ const FOOTER = `
     <hr class="footer-divider"/>
     <div class="footer-bottom">
     <span>© 2025 360 Cabs Taxi Services. All rights reserved.</span>
-    <span><a href="/privacy-policy.html">Privacy Policy</a> · <a href="/terms.html">Terms of Service</a></span>
+    <span><a href="privacy-policy.html">Privacy Policy</a> · <a href="terms.html">Terms of Service</a></span>
     </div>
   </div>
 </footer>`;
