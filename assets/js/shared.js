@@ -916,7 +916,9 @@ if (needsCabData) {
 //   initAutocomplete();
 // });
 
-initAutocomplete();
+//initAutocomplete();
+
+
 
   const swapBtn = document.getElementById('swapBtn');
   if (swapBtn) {
@@ -1098,6 +1100,10 @@ function initAutocomplete() {
   setupGoogleAutocomplete('dropInput',   c => { dropCoords   = c; });
 }
 
+
+window.initGoogleMaps = function () {
+  initAutocomplete();
+};
 
 
 
