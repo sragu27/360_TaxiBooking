@@ -86,13 +86,13 @@
         <div class="cab-price-card">
           <div class="cab-icon"><i class="fas fa-car"></i></div>
           <div class="cab-type-name">Sedan</div>
-          <div class="per-km">₹12</div>
+          <div class="per-km" data-cab-price="Sedan">₹0</div>
           <div class="per-km-label">per kilometre</div>
           <ul class="cab-includes">
             <li><i class="fas fa-check"></i>Swift Dzire / Etios / Amaze</li>
             <li><i class="fas fa-check"></i>4 passengers · 2 bags</li>
             <li><i class="fas fa-check"></i>AC · Music · USB</li>
-            <li><i class="fas fa-check"></i>Min fare ₹500</li>
+            <li><i class="fas fa-check"></i>Min fare<span data-cab-min="Sedan">₹0</span></li>
           </ul>
           <a href="index.html#booking" class="btn-outline-navy mt-3 w-100 justify-content-center">Book Sedan</a>
         </div>
@@ -101,13 +101,13 @@
         <div class="cab-price-card">
           <div class="cab-icon"><i class="fas fa-truck-pickup"></i></div>
           <div class="cab-type-name">SUV</div>
-          <div class="per-km">₹15</div>
+          <div class="per-km" data-cab-price="SUV">₹0</div>
           <div class="per-km-label">per kilometre</div>
           <ul class="cab-includes">
             <li><i class="fas fa-check"></i>Ertiga / Marazzo / Bolero</li>
             <li><i class="fas fa-check"></i>6 passengers · 3 bags</li>
             <li><i class="fas fa-check"></i>AC · Music · USB</li>
-            <li><i class="fas fa-check"></i>Min fare ₹500</li>
+            <li><i class="fas fa-check"></i>Min fare <span data-cab-min="SUV">₹0</span></li>
           </ul>
           <a href="index.html#booking" class="btn-outline-navy mt-3 w-100 justify-content-center">Book SUV</a>
         </div>
@@ -117,13 +117,15 @@
           <div style="font-size:.6rem;font-weight:800;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);margin-bottom:.5rem;background:rgba(244,192,45,.15);padding:.3rem .8rem;border-radius:50px;display:inline-block">⭐ Most Popular</div>
           <div class="cab-icon"><i class="fas fa-shuttle-van"></i></div>
           <div class="cab-type-name">Innova Crysta</div>
-          <div class="per-km" style="color:var(--gold)!important">₹18</div>
+          <!-- <div class="per-km" style="color:var(--gold)!important">₹18</div> -->
+          <div class="per-km" data-cab-price="Innova"  style="color:var(--gold)!important">₹0</div>
+
           <div class="per-km-label">per kilometre</div>
           <ul class="cab-includes">
             <li><i class="fas fa-check"></i>Toyota Innova Crysta</li>
             <li><i class="fas fa-check"></i>7 passengers · 4 bags</li>
             <li><i class="fas fa-check"></i>Dual AC · Premium comfort</li>
-            <li><i class="fas fa-check"></i>Min fare ₹700</li>
+            <li><i class="fas fa-check"></i>Min fare <span data-cab-min="Innova">₹0</span></li>
           </ul>
           <a href="index.html#booking" class="btn-gold mt-3 w-100 justify-content-center">Book Innova</a>
         </div>
@@ -132,13 +134,13 @@
         <div class="cab-price-card">
           <div class="cab-icon"><i class="fas fa-bus-alt"></i></div>
           <div class="cab-type-name">Tempo Traveller</div>
-          <div class="per-km">₹22</div>
+         <div class="per-km" data-cab-price="Tempo">₹0</div>
           <div class="per-km-label">per kilometre</div>
           <ul class="cab-includes">
             <li><i class="fas fa-check"></i>Force Traveller 12–16 seater</li>
             <li><i class="fas fa-check"></i>Up to 16 passengers</li>
             <li><i class="fas fa-check"></i>AC · LCD TV · Pushback</li>
-            <li><i class="fas fa-check"></i>Min fare ₹2,000</li>
+            <li><i class="fas fa-check"></i>Min fare  <span data-cab-min="Tempo">₹0</span></li>
           </ul>
           <a href="index.html#booking" class="btn-outline-navy mt-3 w-100 justify-content-center">Book Tempo</a>
         </div>
@@ -185,9 +187,15 @@
     <div class="table-wrap reveal-up" style="overflow-x:auto">
       <table class="price-table">
         <thead>
-          <tr><th>Route</th><th>Distance</th><th>Sedan (₹12)</th><th>SUV (₹15)</th><th>Innova (₹18)</th><th>Action</th></tr>
+          <tr><th>Route</th>
+            <th>Distance</th>
+            <th>Sedan Fare</th>
+            <th>SUV Fare</th>
+            <th>Innova Fare</th>
+            <th>Action</th></tr>
         </thead>
-        <tbody>
+        <tbody id="popularRoutesBody"></tbody>
+        <!-- <tbody>
           <tr><td class="route-col">Chennai → Pondicherry</td><td class="km-col">160 km</td><td class="price-col">₹1,920</td><td class="price-col">₹2,400</td><td class="price-col">₹2,880</td><td><button onclick="fillRoute('Chennai','Pondicherry')" class="btn-navy" style="font-size:.72rem;padding:.4rem 1rem;">Book</button></td></tr>
           <tr><td class="route-col">Chennai → Coimbatore</td><td class="km-col">500 km</td><td class="price-col">₹6,000</td><td class="price-col">₹7,500</td><td class="price-col">₹9,000</td><td><button onclick="fillRoute('Chennai','Coimbatore')" class="btn-navy" style="font-size:.72rem;padding:.4rem 1rem;">Book</button></td></tr>
           <tr><td class="route-col">Chennai → Madurai</td><td class="km-col">460 km</td><td class="price-col">₹5,520</td><td class="price-col">₹6,900</td><td class="price-col">₹8,280</td><td><button onclick="fillRoute('Chennai','Madurai')" class="btn-navy" style="font-size:.72rem;padding:.4rem 1rem;">Book</button></td></tr>
@@ -198,7 +206,7 @@
           <tr><td class="route-col">Trichy → Chennai</td><td class="km-col">330 km</td><td class="price-col">₹3,960</td><td class="price-col">₹4,950</td><td class="price-col">₹5,940</td><td><button onclick="fillRoute('Trichy','Chennai')" class="btn-navy" style="font-size:.72rem;padding:.4rem 1rem;">Book</button></td></tr>
           <tr><td class="route-col">Madurai → Kanyakumari</td><td class="km-col">244 km</td><td class="price-col">₹2,928</td><td class="price-col">₹3,660</td><td class="price-col">₹4,392</td><td><button onclick="fillRoute('Madurai','Kanyakumari')" class="btn-navy" style="font-size:.72rem;padding:.4rem 1rem;">Book</button></td></tr>
           <tr><td class="route-col">Salem → Chennai</td><td class="km-col">340 km</td><td class="price-col">₹4,080</td><td class="price-col">₹5,100</td><td class="price-col">₹6,120</td><td><button onclick="fillRoute('Salem','Chennai')" class="btn-navy" style="font-size:.72rem;padding:.4rem 1rem;">Book</button></td></tr>
-        </tbody>
+        </tbody> -->
       </table>
     </div>
     <p class="text-center small text-muted mt-3">* Prices are estimates. Toll charges extra. Final fare may vary based on actual distance.</p>
@@ -209,8 +217,8 @@
 <section class="section-pad">
   <div class="container">
     <div class="text-center mb-5 reveal-up"><span class="section-label">Local Travel</span><h2 class="section-title">Hourly <span>Packages</span></h2></div>
-    <div class="row g-4 justify-content-center">
-      <div class="col-sm-6 col-lg-3 reveal-up">
+    <div class="row g-4 justify-content-center"  id="hourlyPackagesGrid">
+      <!-- <div class="col-sm-6 col-lg-3 reveal-up">
         <div class="cab-price-card text-center">
           <div class="cab-type-name">4 Hours Package</div>
           <div class="per-km" style="font-size:1.5rem">₹800 <small style="font-size:.9rem;font-weight:400;color:var(--text-light)">Sedan</small></div>
@@ -234,10 +242,64 @@
           <div class="per-km-label">120 km included · ₹12/km extra</div>
           <a href="index.html#booking" class="btn-outline-navy mt-3 w-100 justify-content-center">Book 12hr</a>
         </div>
-      </div>
+      </div> -->
     </div>
   </div>
 </section>
+
+
+<section class="section-pad bg-light">
+  <div class="container">
+
+    <div class="text-center mb-5">
+      <span class="section-label">Policies</span>
+      <h2 class="section-title">Tariff <span>Terms & Conditions</span></h2>
+      <p class="section-sub">Clear guidelines for one-way and round trip bookings.</p>
+    </div>
+
+    <div class="row g-4">
+
+      <!-- One Way -->
+      <div class="col-lg-6">
+        <div class="terms-card">
+          <h4><i class="fas fa-arrow-right"></i> One Way Trips</h4>
+          <ul>
+            <li>Minimum distance: <strong>130 km</strong></li>
+            <li>Driver allowance: <strong>₹400</strong> (₹600 above 400 km)</li>
+            <li>Hill station charges: <strong>₹300</strong></li>
+            <li>Carrier charges: <strong>₹300</strong></li>
+            <li>Waiting charges: Sedan ₹150 / SUV ₹150</li>
+            <li>Max luggage: Sedan 3 bags · SUV 4 bags</li>
+            <li>Cancellation charge: Minimum ₹300</li>
+            <li class="muted">Toll, parking, permit & airport charges extra</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Round Trip -->
+      <div class="col-lg-6">
+        <div class="terms-card">
+          <h4><i class="fas fa-sync-alt"></i> Round Trips</h4>
+          <ul>
+            <li>Minimum distance: <strong>250 km/day</strong></li>
+            <li>Bangalore trips: <strong>300 km/day minimum</strong></li>
+            <li>Driver allowance: <strong>₹500</strong> (₹600 above 400 km)</li>
+            <li>Hill station charges: <strong>₹300</strong></li>
+            <li>Carrier charges: <strong>₹300</strong></li>
+            <li>Max luggage: Sedan 3 bags · SUV 4 bags</li>
+            <li>Day calculation: <strong>Midnight to midnight</strong></li>
+            <li>Cancellation charge: Minimum ₹300</li>
+            <li class="muted">Toll, parking, permit & airport charges extra</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+
 
  <div id="footer"></div>
 
@@ -268,6 +330,7 @@
 
 <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script> -->
 <script src="assets/js/bootstrap.bundle.min.js"></script>
+<script src="assets/js/config.js"></script>
 <script src="assets/js/shared.js "></script>
  <script src="assets/js/components.js"></script>
 </body>

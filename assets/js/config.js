@@ -6,8 +6,8 @@
 
 const CONFIG = {
 
-  // ── Google Places API ──────────────────────────────
-  GOOGLE_API_KEY: 'YOUR_GOOGLE_PLACES_API_KEY',
+  // ── Google Places API ────────────────────────────── AIzaSyBW-QOANkgdbl-9fuFP47Vvxfv6vX8rHII
+  GOOGLE_API_KEY: 'AIzaSyBW-QOANkgdbl-9fuFP47Vvxfv6vX8rHII',
 
   // ── Supabase ───────────────────────────────────────  
   SUPABASE_URL:      'https://pzsykauafxztphbglztf.supabase.co', 
@@ -19,6 +19,8 @@ const CONFIG = {
 
   // RESEND EMAIL URL IN SUBABASE EDGE FUNCTION
   RESEND_EMAIL_URL: 'https://pzsykauafxztphbglztf.supabase.co/functions/v1/resend-email',
+
+  RESEND_ENQUIRY_URL:'https://pzsykauafxztphbglztf.supabase.co/functions/v1/send-enquiry-email',
 
   // ── EmailJS ────────────────────────────────────────
   
@@ -32,5 +34,7 @@ const CONFIG = {
 
   // ── Fare rates ₹/km ───────────────────────────────
   RATES:    { Sedan: 12, SUV: 15, Innova: 18, Tempo: 22 },
+
   MIN_FARE: 500,
+  
 };

@@ -43,3 +43,28 @@
     .how-section { background: var(--navy-pale); }
     .test-section { background: var(--off-white); }
     .how-step-num { font-family:var(--ff-display);font-size:3rem;font-weight:800;color:rgba(51,97,132,0.1);line-height:1;margin-bottom:0.5rem; }
+
+    
+  .check-fare-btn {
+  width: 100%;
+  padding: 1rem;
+  background: var(--gold);
+  color: var(--navy);
+  border: none;
+  border-radius: var(--radius);
+  font-family: var(--ff-display);
+  font-weight: 800;
+  font-size: 1rem;
+  cursor: pointer;
+  margin-bottom: 0.75rem;
+  transition: all 0.2s;
+}
+.check-fare-btn:hover {
+  background: #e6b800;
+  transform: translateY(-1px);
+}
+.check-fare-btn:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+  transform: none;
+}

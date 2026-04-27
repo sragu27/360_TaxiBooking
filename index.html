@@ -145,7 +145,9 @@
             <form id="bookingForm">
               <!-- Pickup -->
               <div class="field-group">
-                <div class="field-label"><i class="fas fa-map-marker-alt icon-pickup"></i> Pickup Location</div>
+                <div class="field-label">
+                  <i class="fas fa-map-marker-alt icon-pickup"></i> Pickup Location
+                </div>
                 <div class="location-wrap">
                   <input type="text" id="pickupInput" class="field-input" placeholder="Enter pickup city or address" autocomplete="off" required/>
                   <div class="suggestions-box" id="pickupBox"></div>
@@ -187,7 +189,7 @@
               <div class="field-group">
                 <div class="field-label"><i class="fas fa-car icon-date"></i> Choose Cab</div>
                 <div class="cab-grid" id="cabGrid">
-                  <label class="cab-card active">
+                  <!-- <label class="cab-card active">
                     <input type="radio" name="cabType" value="Sedan" data-rate="12" checked/>
                     <i class="fas fa-car"></i><span class="cab-name">Sedan</span><span class="cab-rate">₹12/km</span>
                   </label>
@@ -202,7 +204,7 @@
                   <label class="cab-card">
                     <input type="radio" name="cabType" value="Tempo" data-rate="22"/>
                     <i class="fas fa-bus-alt"></i><span class="cab-name">Tempo</span><span class="cab-rate">₹22/km</span>
-                  </label>
+                  </label> -->
                 </div>
               </div>
               <!-- Passenger details -->
@@ -238,10 +240,15 @@
                 <div class="fare-row"><span class="fare-label"><i class="fas fa-rupee-sign"></i> Estimated Fare</span><span class="fare-value big" id="fareAmount">—</span></div>
                 <p class="fare-note">* Estimate only. Toll & parking extra. Final fare at trip end.</p>
               </div>
-              <button type="submit" class="book-now-btn" id="bookBtn">
+
+              <button type="button" class="check-fare-btn" id="checkFareBtn">
+                <i class="fas fa-calculator me-2"></i>Check Fare & Proceed
+              </button>
+
+              <button type="submit" class="book-now-btn" id="bookBtn" style="display:none">
                 <i class="fas fa-bolt me-2"></i>Book Now — Instant Confirm
               </button>
-              <div class="notify-row">
+              <div class="notify-row" id="notifyRow">
                 <span><i class="fab fa-whatsapp text-success"></i> WhatsApp alert</span>
                 <span><i class="fas fa-envelope" style="color:var(--navy)"></i> Email confirm</span>
                 <span><i class="fab fa-telegram" style="color:#0088cc"></i> Telegram ping</span>
@@ -393,8 +400,25 @@
    <a href="https://wa.me/919962966606" class="wa-float" target="_blank"><i class="fab fa-whatsapp"></i></a>
   <a href="tel:+919876543210" class="call-float"><i class="fas fa-phone-alt"></i></a>
 </div>
+
+
+
+
 <script src="assets/js/bootstrap.bundle.min.js"></script>
-<!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script> -->
+
+<!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBW-QOANkgdbl-9fuFP47Vvxfv6vX8rHII&libraries=places&v=weekly"></script> -->
+
+<!-- <script>
+  (g=>{var h,a,k,p="The Google Maps JavaScript API",c="google",l="importLibrary",q="__ib__",m=document,b=window;b=b[c]||(b[c]={});var d=b.maps||(b.maps={}),r=new Set,e=new URLSearchParams,u=()=>h||(h=new Promise(async(f,n)=>{await (a=m.createElement("script"));e.set("libraries",[...r]+"");for(k in g)e.set(k.replace(/[A-Z]/g,t=>"_"+t[t.toLowerCase()]),g[k]);e.set("callback",c+".maps."+q);a.src=`https://maps.googleapis.com/maps/api/js?`+e;d[q]=f;a.onerror=()=>h=n(Error(p+" could not load."));a.nonce=m.querySelector("script[nonce]")?.nonce||"";m.head.append(a)}));d[l]?console.warn(p+" only loads once. Ignoring:",g):d[l]=(f,...n)=>r.add(f)&&u().then(()=>d[l](f,...n))})
+  ({key: "AIzaSyBW-QOANkgdbl-9fuFP47Vvxfv6vX8rHII", v: "weekly", libraries: "places"});
+</script> -->
+
+<script
+  async
+  defer
+  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBW-QOANkgdbl-9fuFP47Vvxfv6vX8rHII&libraries=places">
+</script>
+
 <script src="assets/js/config.js"></script>
 <script src="assets/js/shared.js"></script>
 <script src="assets/js/components.js"></script>
@@ -423,8 +447,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
     document.getElementById("travelTime").value = time;
 
-    console.log("✅ IST Date:", today);
-    console.log("✅ IST Time:", time);
   }
 
   setDefaultDateTime();

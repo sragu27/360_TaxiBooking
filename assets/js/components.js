@@ -83,7 +83,7 @@ const FOOTER = `
       <li><i class="fas fa-envelope"></i>
       <a href="/cdn-cgi/l/email-protection#264449494d4f4841556655514f4052544f4243084f48">
       <span class="__cf_email__" data-cfemail="83e1ecece8eaede4f0c3f0f4eae5f7f1eae7e6adeaed">
-      [email&#160;protected]</span></a></li>
+       360cabsonewaydroptaxi@gmail.com</span></a></li>
       <li><i class="fas fa-map-marker-alt"></i>No. 12, Anna Salai, Chennai - 600002</li>
       <li><i class="fas fa-clock"></i>Available 24 hours, 7 days</li>
       </ul>
@@ -92,7 +92,7 @@ const FOOTER = `
     <hr class="footer-divider"/>
     <div class="footer-bottom">
     <span>© 2025 360 Cabs Taxi Services. All rights reserved.</span>
-    <span><a href="#">Privacy Policy</a> · <a href="#">Terms of Service</a></span>
+    <span><a href="/privacy-policy.html">Privacy Policy</a> · <a href="/terms.html">Terms of Service</a></span>
     </div>
   </div>
 </footer>`;
