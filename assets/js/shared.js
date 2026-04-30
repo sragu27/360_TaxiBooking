@@ -979,7 +979,7 @@ if (needsCabData) {
     });
   }
 
-  const cabGridEl = document.querySelector('.cab-grid');
+ /*  const cabGridEl = document.querySelector('.cab-grid');
   if (cabGridEl) {
     cabGridEl.addEventListener('click', async function (e) {
       const card = e.target.closest('.cab-card');
@@ -988,9 +988,27 @@ if (needsCabData) {
       card.classList.add('active');
       const radio = card.querySelector('input[type="radio"]');
       if (radio) radio.checked = true;
-     await recalcFare();
+       await recalcFare();
     });
-  } 
+  } */ 
+
+  document.addEventListener('change', async (e) => {
+
+  if (e.target.matches('input[name="cabType"]')) {
+
+    document.querySelectorAll('.cab-card')
+      .forEach(c => c.classList.remove('active'));
+
+    e.target.closest('.cab-card')
+      ?.classList.add('active');
+
+    if (fareChecked) {
+      await recalcFare();
+    }
+
+  }
+
+});
 
  
 
@@ -1163,11 +1181,39 @@ if (checkFareBtn) {
     // Show success message
     showAlert('Fare calculated! Proceed to book below.', 'success');
   });
+
+
 }
+
+ /* =========================================================
+    AUTO RECALCULATE FARE ON FIELD CHANGE
+========================================================= */
+
+[
+  'travelDate',
+  'returnDate',
+  'travelTime'
+].forEach(id => {
+
+  const el = document.getElementById(id);
+
+  if (!el) return;
+
+  el.addEventListener('change', async () => {
+
+    if (fareChecked) {
+      await recalcFare();
+    }
+
+  });
+
+});
 
 
 
 });
+
+
 
 function initAutocomplete() {
   setupGoogleAutocomplete('pickupInput', c => { pickupCoords = c; });
