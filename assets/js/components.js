@@ -86,6 +86,7 @@ const FOOTER = `
        360cabsonewaydroptaxi@gmail.com</span></a></li>
       <li><i class="fas fa-map-marker-alt"></i>Chromepet, Chennai - 600044</li>
       <li><i class="fas fa-clock"></i>Available 24 hours, 7 days</li>
+      <li><i class="fas fa-tools"></i><a href="./admin/admin-login.html">ADMIN</a></li>
       </ul>
       </div>
     </div>

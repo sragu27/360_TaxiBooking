@@ -18,7 +18,7 @@ let CABS = [];
 ========================================================= */
 async function loadCabs() {
   try {
-    const res = await fetch(`${CONFIG.SUPABASE_URL}/rest/v1/cabs?is_active=eq.true`, {
+    const res = await fetch(`${CONFIG.SUPABASE_URL}/rest/v1/oneway_cabs?is_active=eq.true`, {
       headers: {
         apikey: CONFIG.SUPABASE_ANON_KEY,
         Authorization: `Bearer ${CONFIG.SUPABASE_ANON_KEY}`
@@ -55,8 +55,8 @@ function renderCabs(cabs) {
       <input type="radio" name="cabType"
         value="${cab.name}"
         data-rate="${cab.price_per_km}"
-        data-base="${cab.base_fare}"
-        data-min="${cab.min_fare}"
+        data-base="${cab.driver_allowance}"
+        data-min="${cab.min_km}"
         ${index === 0 ? 'checked' : ''} />
 
       <i class="fas fa-car"></i>
@@ -521,9 +521,9 @@ function getSelectedCab() {
 
   return r ? {
     name: r.value,
-    rate: parseInt(r.dataset.rate),
-    base: parseInt(r.dataset.base),
-    min: parseInt(r.dataset.min)
+    rate: parseFloat(r.dataset.rate) || 0,
+    allowance: parseFloat(r.dataset.base) || 0,
+    minKm: parseFloat(r.dataset.min) || 0
   } : null;
 }
 
@@ -543,14 +543,19 @@ async function recalcFare() {
 
   const dist = await getDistanceKm(pickupCoords, dropCoords);
 
-  let fare = (dist * cab.rate) + cab.base;
-  fare = Math.max(fare, cab.min);
+  const billableKm = Math.max(dist, cab.minKm);
+
+  let fare = (billableKm * cab.rate) + cab.allowance;
+
+  /* let fare = (dist * cab.rate) + cab.allowance;
+  fare = Math.max(fare, cab.minKm); */
 
   if (currentTrip === 'roundtrip') {
     fare = Math.ceil(fare * 2 * 0.9);
   }
 
   document.getElementById('fareDistance').textContent = `~${dist} km`;
+  document.getElementById('fareMinKm').textContent = `~${cab.minKm} km `;
   document.getElementById('fareAmount').textContent = `₹${fare.toLocaleString('en-IN')}`;
 
   fareBox.style.display = 'block';
@@ -584,58 +589,7 @@ async function recalcFare() {
   });
 } */
 
-  /* =========================================================
-   📍 GOOGLE AUTOCOMPLETE (Classic - works fine!)
-========================================================= */
-/* function setupGoogleAutocomplete(inputId, setter) {
-  const input = document.getElementById(inputId);
-  if (!input) return;
-
-  const auto = new google.maps.places.Autocomplete(input, {
-    componentRestrictions: { country: "in" },
-    fields: ['geometry', 'name']
-  });
-
-  auto.addListener('place_changed', async () => {
-    const place = auto.getPlace();
-    if (!place.geometry) return;
-
-    const coords = {
-      lat: place.geometry.location.lat(),
-      lon: place.geometry.location.lng()
-    };
-
-    setter(coords);
-
-    if (fareChecked) await recalcFare();
-  });
-} */
-
-
-  /* function setupGoogleAutocomplete(inputId, setter) {
-  const input = document.getElementById(inputId);
-  if (!input) return;
-
-  google.maps.importLibrary("places").then(({ Autocomplete }) => {
-    const auto = new Autocomplete(input, {
-      componentRestrictions: { country: "in" },
-      fields: ['geometry', 'name']
-    });
-
-    auto.addListener('place_changed', async () => {
-      const place = auto.getPlace();
-      if (!place.geometry) return;
-
-      const coords = {
-        lat: place.geometry.location.lat(),
-        lon: place.geometry.location.lng()
-      };
-
-      setter(coords);
-      if (fareChecked) await recalcFare();
-    });
-  });
-} */
+ 
 
   function setupGoogleAutocomplete(inputId, setter) {
 
@@ -908,17 +862,7 @@ if (needsCabData) {
     });
   } 
 
-  /* setupGoogleAutocomplete('pickupInput', c => pickupCoords = c);
-  setupGoogleAutocomplete('dropInput', c => dropCoords = c); */
-
-
-// google.maps.importLibrary("places").then(() => {
-//   initAutocomplete();
-// });
-
-//initAutocomplete();
-
-
+ 
 
   const swapBtn = document.getElementById('swapBtn');
   if (swapBtn) {
