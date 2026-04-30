@@ -68,3 +68,111 @@
   cursor: not-allowed;
   transform: none;
 }
+
+
+.fare-summary-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:.8rem;
+  margin-bottom:1rem;
+}
+
+.fare-summary-item{
+  background:#f8fafc;
+  border:1px solid #e2e8f0;
+  border-radius:12px;
+  padding:.8rem;
+}
+
+.summary-label{
+  display:block;
+  font-size:.72rem;
+  color:#64748b;
+  margin-bottom:.25rem;
+  font-weight:600;
+}
+
+.summary-value{
+  font-size:.95rem;
+  font-weight:700;
+  color:var(--navy);
+}
+
+.fare-route{
+  background:#fff;
+  border:1px dashed #dbeafe;
+  padding:.85rem 1rem;
+  border-radius:12px;
+  font-size:.82rem;
+  margin-bottom:1rem;
+  color:#334155;
+  line-height:1.5;
+}
+
+.fare-route i{
+  color:var(--gold);
+  margin-right:.45rem;
+}
+
+.fare-bottom-row{
+  display:flex;
+  gap:1rem;
+  margin-bottom:1rem;
+}
+
+.distance-box,
+.fare-price-box{
+  flex:1;
+  border-radius:14px;
+  padding:1rem;
+}
+
+.distance-box{
+  background:#f8fafc;
+  border:1px solid #e2e8f0;
+}
+
+.fare-price-box{
+  background:linear-gradient(135deg,#0f172a,#1e293b);
+  color:#fff;
+}
+
+.distance-label,
+.fare-price-label{
+  font-size:.72rem;
+  font-weight:600;
+  opacity:.75;
+  margin-bottom:.35rem;
+}
+
+.distance-value{
+  font-size:1rem;
+  font-weight:700;
+  color:var(--navy);
+}
+
+.fare-price-value{
+  font-size:1.4rem;
+  font-weight:800;
+  line-height:1;
+}
+
+.fare-notes{
+  border-top:1px solid #e2e8f0;
+  padding-top:.8rem;
+}
+
+.fare-notes p{
+  margin:0 0 .35rem;
+  font-size:.72rem;
+  color:#64748b;
+  line-height:1.5;
+}
+
+@media(max-width:576px){
+
+  .fare-bottom-row{
+    flex-direction:column;
+  }
+
+}

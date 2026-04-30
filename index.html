@@ -235,8 +235,11 @@
                 </div>
               </div>
               <!-- Fare estimate -->
-              <div class="fare-box" id="fareBox" style="display:none">
-                <div class="fare-row"><span class="fare-label"><i class="fas fa-road"></i> Distance</span><span class="fare-value" id="fareDistance">—</span></div>
+
+              <!-- <div class="fare-box" id="fareBox" style="display:none">
+                <div class="fare-row">
+                  <span class="fare-label">
+                    <i class="fas fa-road"></i> Distance</span><span class="fare-value" id="fareDistance">—</span></div>
                 <div class="fare-row">
                   <span class="fare-label">
                      <i class="fas fa-route"></i> Minimum km
@@ -252,7 +255,162 @@
 
                 <div class="fare-row"><span class="fare-label"><i class="fas fa-rupee-sign"></i> Estimated Fare</span><span class="fare-value big" id="fareAmount">—</span></div>
                 <p class="fare-note">* Estimate only. Toll & parking extra. Final fare at trip end.</p>
+              </div> -->
+
+              <!-- Fare estimate -->
+          <!-- <div class="fare-box" id="fareBox" style="display:none">
+
+              
+              <div class="fare-row">
+                <span class="fare-label">
+                  <i class="fas fa-car"></i> Cab Type
+                </span>
+                <span class="fare-value" id="fareCabType">—</span>
               </div>
+
+              <div class="fare-row">
+                <span class="fare-label">
+                  <i class="fas fa-route"></i> Trip Type
+                </span>
+                <span class="fare-value" id="fareTripType">—</span>
+              </div>
+
+              <div class="fare-row">
+                <span class="fare-label">
+                  <i class="fas fa-map-marker-alt"></i> Route
+                </span>
+                <span class="fare-value" id="fareRoute">—</span>
+              </div>
+
+           
+              <div class="fare-row">
+                <span class="fare-label">
+                  <i class="fas fa-road"></i> Distance
+                </span>
+                <span class="fare-value" id="fareDistance">—</span>
+              </div>
+
+             
+              <div class="fare-row" id="minKmRow" style="display:none;">
+                <span class="fare-label">
+                  <i class="fas fa-route"></i> Minimum km
+                </span>
+                <span class="fare-value" id="fareMinKm">—</span>
+              </div>
+
+
+            
+            <div class="fare-row" id="allowanceAmountRow" style="display:none;">
+              <span class="fare-label">
+                <i class="fas fa-rupee-sign"></i> Driver Allowance Amount
+              </span>
+              <span class="fare-value" id="fareAllowance">—</span>
+            </div>
+
+          
+          <div class="fare-row">
+            <span class="fare-label">
+              <i class="fas fa-rupee-sign"></i> Estimated Fare
+            </span>
+            <span class="fare-value big" id="fareAmount">—</span>
+          </div>
+
+          
+            <p class="fare-note">
+              * Driver allowance included. Toll & parking extra.
+            </p>
+
+            <p class="fare-note">
+              * Final fare may vary based on route and trip duration.
+            </p>
+
+            <p class="fare-note">
+              * Hill station routes may have additional charges.
+            </p>
+
+        </div> -->
+
+        <div class="fare-box" id="fareBox" style="display:none">
+
+  <!-- Top Summary -->
+  <div class="fare-summary-grid">
+
+    <div class="fare-summary-item">
+      <span class="summary-label">
+        <i class="fas fa-car"></i> Cab
+      </span>
+      <span class="summary-value" id="fareCabType">—</span>
+    </div>
+
+    <div class="fare-summary-item">
+      <span class="summary-label">
+        <i class="fas fa-route"></i> Trip
+      </span>
+      <span class="summary-value" id="fareTripType">—</span>
+    </div>
+
+  </div>
+
+  <!-- Route -->
+  <div class="fare-route">
+    <i class="fas fa-map-marker-alt"></i>
+    <span id="fareRoute">—</span>
+  </div>
+
+  <!-- Distance + Fare -->
+  <div class="fare-bottom-row">
+
+    <div class="distance-box">
+      <div class="distance-label">
+        Distance
+      </div>
+
+      <div class="distance-value" id="fareDistance">
+        —
+      </div>
+    </div>
+
+    <div class="fare-price-box">
+      <div class="fare-price-label">
+        Estimated Fare
+      </div>
+
+      <div class="fare-price-value" id="fareAmount">
+        —
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Hidden future rows -->
+  <div id="minKmRow" style="display:none;">
+    <span id="fareMinKm"></span>
+  </div>
+
+  <div id="allowanceAmountRow" style="display:none;">
+    <span id="fareAllowance"></span>
+  </div>
+
+  <!-- Notes -->
+  <div class="fare-notes">
+
+    <p>
+      * Driver allowance included. Toll & parking extra.
+    </p>
+
+    <p>
+      * Final fare may vary based on route and trip duration.
+    </p>
+
+    <p>
+      * Hill station routes may have additional charges.
+    </p>
+
+  </div>
+
+</div>
+
+
 
               <button type="button" class="check-fare-btn" id="checkFareBtn">
                 <i class="fas fa-calculator me-2"></i>Check Fare & Proceed

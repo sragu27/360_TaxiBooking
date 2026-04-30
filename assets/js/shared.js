@@ -656,7 +656,7 @@ function getSelectedCab() {
   fare = Math.ceil(fare);
 
   // UI UPDATE
-  document.getElementById('fareDistance').textContent =
+  /* document.getElementById('fareDistance').textContent =
     `~${dist} km`;
 
   document.getElementById('fareMinKm').textContent =
@@ -672,7 +672,47 @@ function getSelectedCab() {
   document.getElementById(
     'fareAmount'
   ).textContent =
-    `₹${fare.toLocaleString('en-IN')}`;
+    `₹${fare.toLocaleString('en-IN')}`; */
+
+    // Trip labels
+const tripLabels = {
+  oneway: 'One Way',
+  roundtrip: 'Round Trip',
+  airport: 'Airport Transfer',
+  hourly: 'Hourly Rental'
+};
+
+// Input text
+const pickupText =
+  document.getElementById('pickupInput')?.value || '—';
+
+const dropText =
+  document.getElementById('dropInput')?.value || '—';
+
+// UI UPDATE
+document.getElementById('fareCabType').textContent =
+  cab.name;
+
+document.getElementById('fareTripType').textContent =
+  tripLabels[currentTrip] || currentTrip;
+
+document.getElementById('fareRoute').textContent =
+  `${pickupText} → ${dropText}`;
+
+document.getElementById('fareDistance').textContent =
+  `~${dist} km`;
+
+document.getElementById('fareAmount').textContent =
+  `₹${fare.toLocaleString('en-IN')}`;
+
+// Hidden future fields
+document.getElementById('fareMinKm').textContent =
+  currentTrip === 'roundtrip'
+    ? `${cab.minKm} km/day`
+    : `${cab.minKm} km`;
+
+document.getElementById('fareAllowance').textContent =
+  `₹${allowance.toLocaleString('en-IN')}`;
 
   fareBox.style.display = 'block';
 
