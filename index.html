@@ -124,7 +124,7 @@
       </div>
 
       <!-- RIGHT: booking widget — NO reveal-up, z-index set -->
-      <div class="col-lg-6" id="booking" style="position:relative;z-index:10;">
+      <div class="col-lg-6 mt-4" id="booking" style="position:relative;z-index:10;">
         <div class="booking-widget" id="bookingWidget">
           <div class="booking-widget-header">
             <div>
@@ -332,6 +332,12 @@
 
         <div class="fare-box" id="fareBox" style="display:none">
 
+        <!-- Route -->
+      <div class="fare-route">
+        <i class="fas fa-map-marker-alt"></i>
+        <span id="fareRoute">—</span>
+      </div>
+
   <!-- Top Summary -->
   <div class="fare-summary-grid">
 
@@ -351,11 +357,6 @@
 
   </div>
 
-  <!-- Route -->
-  <div class="fare-route">
-    <i class="fas fa-map-marker-alt"></i>
-    <span id="fareRoute">—</span>
-  </div>
 
   <!-- Distance + Fare -->
   <div class="fare-bottom-row">
@@ -524,7 +525,7 @@
 </section>
 
 <!-- CTA -->
-<section style="background:var(--navy);padding:4rem 0;">
+<section class="readyToBookSec" style="background:var(--navy);padding:4rem 0;">
   <div class="container text-center reveal-up">
     <h2 style="font-family:var(--ff-display);color:var(--white);font-weight:800;font-size:clamp(1.8rem,4vw,2.5rem);margin-bottom:1rem">Ready to Book Your Ride?</h2>
     <p style="color:rgba(255,255,255,0.75);margin-bottom:2rem;">No advance payment · Transparent pricing · Instant WhatsApp confirmation</p>

@@ -701,9 +701,12 @@ select.field-input option { background: var(--white); }
   .nav-cta{
     margin-top: 16px;
   }
-  .home-wrapper{
+  /* .home-wrapper{
     flex-direction: column-reverse;
-  }
+  } */
+
+ 
+
   .page-hero{
     padding-top: 120px;
      overflow-x: clip;

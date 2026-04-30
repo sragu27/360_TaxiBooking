@@ -31,7 +31,15 @@
     }
     .badge-pulse { width: 8px; height: 8px; border-radius: 50%; background: var(--gold); animation: pulse 1.5s infinite; display:inline-block; }
     @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.5;transform:scale(0.8)} }
-    .hero-h1 { font-family: var(--ff-display); font-size: clamp(2.6rem,6vw,4rem); font-weight: 800; color: var(--white); line-height: 1.1; margin-bottom: 1.2rem; }
+    .hero-h1 {
+        font-family: var(--ff-display);
+        /* font-size: clamp(2.6rem,6vw,4rem);  */
+        font-size: 3rem;
+        font-weight: 800;
+        color: var(--white); 
+        line-height: 1.1; 
+        margin-bottom: 1.2rem; 
+      }
     .hero-h1 .highlight { color: var(--gold); position: relative; display: inline-block; }
     .hero-h1 .highlight::after { content: ''; position: absolute; bottom: -4px; left: 0; right: 0; height: 3px; background: var(--gold); border-radius: 2px; }
     .hero-p { font-size: 1rem; color: rgba(255,255,255,0.75); margin-bottom: 2rem; line-height: 1.8; }
@@ -103,7 +111,8 @@
   border:1px dashed #dbeafe;
   padding:.85rem 1rem;
   border-radius:12px;
-  font-size:.82rem;
+  font-size:.95rem;
+  font-weight:700;
   margin-bottom:1rem;
   color:#334155;
   line-height:1.5;
@@ -167,6 +176,39 @@
   font-size:.72rem;
   color:#64748b;
   line-height:1.5;
+}
+
+@media(max-width:767px){
+
+   .hero-badge {
+    font-size: 0.60rem;
+  }
+   .hero-left .hero-h1 {
+      font-size: 2.1rem !important;
+    }
+  
+    .hero-p {
+      font-size: 0.9rem;
+      margin-bottom: 0;
+    }
+  
+   .hero-actions {
+    display: none;
+    
+    }
+
+  .hero-usp{
+    display:none;
+  }
+     .how-section {
+       display: none !important;
+    }
+
+    .readyToBookSec{
+      display: none !important;
+    }
+
+
 }
 
 @media(max-width:576px){
