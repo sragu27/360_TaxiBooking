@@ -18,7 +18,14 @@ let CABS = [];
 ========================================================= */
 async function loadCabs() {
   try {
-    const res = await fetch(`${CONFIG.SUPABASE_URL}/rest/v1/oneway_cabs?is_active=eq.true`, {
+
+     const table =
+      currentTrip === 'roundtrip'
+        ? 'roundtrip_cabs'
+        : 'oneway_cabs';
+
+
+    const res = await fetch(`${CONFIG.SUPABASE_URL}/rest/v1/${table}?is_active=eq.true`, {
       headers: {
         apikey: CONFIG.SUPABASE_ANON_KEY,
         Authorization: `Bearer ${CONFIG.SUPABASE_ANON_KEY}`
@@ -530,7 +537,7 @@ function getSelectedCab() {
 /* =========================================================
    💰 CALCULATE FARE (GOOGLE BASED)
 ========================================================= */
-async function recalcFare() {
+/* async function recalcFare() {
   const fareBox = document.getElementById('fareBox');
 
   if (!pickupCoords || !dropCoords || currentTrip === 'hourly' || !fareChecked) {
@@ -547,21 +554,140 @@ async function recalcFare() {
 
   let fare = (billableKm * cab.rate) + cab.allowance;
 
-  /* let fare = (dist * cab.rate) + cab.allowance;
-  fare = Math.max(fare, cab.minKm); */
 
   if (currentTrip === 'roundtrip') {
-    fare = Math.ceil(fare * 2 * 0.9);
+    fare = Math.ceil(fare * 2);
   }
 
   document.getElementById('fareDistance').textContent = `~${dist} km`;
   document.getElementById('fareMinKm').textContent = `~${cab.minKm} km `;
+  document.getElementById('fareAllowance').textContent = `₹${cab.allowance.toLocaleString('en-IN')}`;
   document.getElementById('fareAmount').textContent = `₹${fare.toLocaleString('en-IN')}`;
 
   fareBox.style.display = 'block';
 
   return { dist, fare, cab: cab.name };
+} */
+
+  async function recalcFare() {
+
+  const fareBox = document.getElementById('fareBox');
+
+  if (
+    !pickupCoords ||
+    !dropCoords ||
+    currentTrip === 'hourly' ||
+    !fareChecked
+  ) {
+    fareBox.style.display = 'none';
+    return null;
+  }
+
+  const cab = getSelectedCab();
+
+  if (!cab) return null;
+
+  // One-way distance from Google
+  const dist = await getDistanceKm(
+    pickupCoords,
+    dropCoords
+  );
+
+  let totalDays = 1;
+  let billableKm = dist;
+  let allowance = cab.allowance;
+
+  // ROUNDTRIP LOGIC
+  if (currentTrip === 'roundtrip') {
+
+    const travelDate =
+      document.getElementById('travelDate')?.value;
+
+    const returnDate =
+      document.getElementById('returnDate')?.value;
+
+    // Calculate total days
+    if (travelDate && returnDate) {
+
+      const start = new Date(travelDate);
+
+      const end = new Date(returnDate);
+
+      totalDays = Math.floor((end - start) /(1000 * 60 * 60 * 24)) + 1;
+
+      // Safety fallback
+      if (totalDays < 1) {
+        totalDays = 1;
+      }
+
+    }
+
+    // Actual travel km (up + down)
+    const actualRoundtripKm =
+      dist * 2;
+
+    // Minimum km policy
+    const minimumTripKm = cab.minKm * totalDays;
+
+    // Professional commercial billing
+    billableKm = Math.max(
+      actualRoundtripKm,
+      minimumTripKm
+    );
+
+    // Driver allowance per day
+    allowance = cab.allowance * totalDays;
+
+  }
+
+  // ONEWAY LOGIC
+  else {
+
+    billableKm = Math.max(
+      dist,
+      cab.minKm
+    );
+
+  }
+
+  // FINAL FARE
+  let fare = (billableKm * cab.rate) + allowance;
+
+  fare = Math.ceil(fare);
+
+  // UI UPDATE
+  document.getElementById('fareDistance').textContent =
+    `~${dist} km`;
+
+  document.getElementById('fareMinKm').textContent =
+    currentTrip === 'roundtrip'
+      ? `${cab.minKm} km/day`
+      : `${cab.minKm} km`;
+
+  document.getElementById(
+    'fareAllowance'
+  ).textContent =
+    `₹${allowance.toLocaleString('en-IN')}`;
+
+  document.getElementById(
+    'fareAmount'
+  ).textContent =
+    `₹${fare.toLocaleString('en-IN')}`;
+
+  fareBox.style.display = 'block';
+
+  return {
+    dist,
+    fare,
+    cab: cab.name,
+    totalDays,
+    billableKm
+  };
+
 }
+
+
+
 
 /* =========================================================
    📍 GOOGLE AUTOCOMPLETE
@@ -833,6 +959,10 @@ if (needsCabData) {
       document.querySelectorAll('.trip-tab').forEach(t => t.classList.remove('active'));
       tab.classList.add('active');
       currentTrip = tab.dataset.trip;
+
+      await loadCabs();
+      await recalcFare();
+
       const returnWrap = document.getElementById('returnDateWrap');
       const dropWrap   = document.getElementById('dropWrap');
       const swapRow    = document.getElementById('swapRow');
