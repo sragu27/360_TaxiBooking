@@ -220,13 +220,9 @@
   }
 
   .hero-left .hero-h1 {
-      font-size: 1.25rem !important;
+      font-size: 1.65rem !important;
     }
 
-     .hero-p {
-      font-size: 0.7rem;
-     
-    }
 
   .fare-bottom-row{
     flex-direction:column;
