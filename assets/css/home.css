@@ -213,6 +213,21 @@
 
 @media(max-width:576px){
 
+ 
+
+   .hero-badge {
+     margin-bottom: 0.5rem;
+  }
+
+  .hero-left .hero-h1 {
+      font-size: 1.25rem !important;
+    }
+
+     .hero-p {
+      font-size: 0.7rem;
+     
+    }
+
   .fare-bottom-row{
     flex-direction:column;
   }
