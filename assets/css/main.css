@@ -696,6 +696,28 @@ select.field-input option { background: var(--white); }
   }
   .stat-divider-v { display: none; }
 }
+
+@media(max-width:991px){
+
+  .navbar-toggler{
+    padding:14px !important;
+    border:none !important;
+    box-shadow:none !important;
+  }
+
+  .navbar-collapse{
+    background:#fff;
+    padding:20px;
+    margin-top:12px;
+    border-radius:16px;
+    box-shadow:0 10px 30px rgba(0,0,0,.12);
+    z-index:99999;
+    position:relative;
+  }
+
+}
+
+
 @media (max-width: 767px) {
   .section-pad { padding: 50px 0; }
   .cab-grid { grid-template-columns: repeat(2,1fr); }

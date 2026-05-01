@@ -109,7 +109,7 @@ function updateTariffPrices(cabs) {
     document
       .querySelectorAll(`[data-cab-min="${cab.name}"]`)
       .forEach(el => {
-        el.textContent = `₹${cab.min_fare}`;
+        el.textContent = `₹${cab.min_km}`;
       });
 
   });
