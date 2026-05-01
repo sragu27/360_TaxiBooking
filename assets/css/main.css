@@ -118,6 +118,10 @@ a { text-decoration: none; color: inherit; }
 .navbar-logo{
   height: 42px;
 }
+.navbar-toggler:focus {
+   
+    box-shadow: var(--gold) !important;
+}
 
 /* ── Typography ────────────────────────────────── */
 .section-label {
@@ -704,6 +708,8 @@ select.field-input option { background: var(--white); }
   /* .home-wrapper{
     flex-direction: column-reverse;
   } */
+
+
 
  
 

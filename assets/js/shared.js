@@ -1091,6 +1091,17 @@ if (needsCabData) {
         showAlert('Please enter drop location.', 'error'); return;
       }
 
+      const termsAccepted =
+      document.getElementById('termsAccept')?.checked;
+
+    if (!termsAccepted) {
+      showAlert(
+        'Please accept Terms & Privacy Policy before confirming booking.',
+        'error'
+      );
+      return;
+    }
+
       const fareInfo  = await recalcFare();
       const cab       = getSelectedCab();
       const tripLabel = {
@@ -1126,6 +1137,13 @@ if (needsCabData) {
       this.reset();
       pickupCoords = dropCoords = null;
       currentTrip = 'oneway';
+
+      // Hide terms acknowledgment
+    const termsBoxEl = document.getElementById('termsBox');
+    if (termsBoxEl) {
+      termsBoxEl.style.display = 'none';
+    }
+
 
       fareChecked = false; // ← reset flag
       const checkFareBtnEl = document.getElementById('checkFareBtn');
@@ -1171,16 +1189,6 @@ if (checkFareBtn) {
     const pickup = document.getElementById('pickupInput')?.value.trim();
     const drop   = document.getElementById('dropInput')?.value.trim();
 
-    const termsAccepted =
-    document.getElementById('termsAccept')?.checked;
-
-    if (!termsAccepted) {
-      showAlert(
-        'Please accept Terms & Privacy Policy before proceeding.',
-        'error'
-      );
-      return;
-    }
 
     // Validate
     if (!name || !phone) {
@@ -1222,6 +1230,10 @@ if (checkFareBtn) {
       name, phone, pickup, drop || 'N/A',
       tripLabel, fareInfo.fare, fareInfo.dist
     );
+
+    // terms box show
+
+    document.getElementById('termsBox').style.display = 'block';
 
     // Show Book Now button
     document.getElementById('bookBtn').style.display = 'block';
