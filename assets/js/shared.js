@@ -1171,6 +1171,17 @@ if (checkFareBtn) {
     const pickup = document.getElementById('pickupInput')?.value.trim();
     const drop   = document.getElementById('dropInput')?.value.trim();
 
+    const termsAccepted =
+    document.getElementById('termsAccept')?.checked;
+
+    if (!termsAccepted) {
+      showAlert(
+        'Please accept Terms & Privacy Policy before proceeding.',
+        'error'
+      );
+      return;
+    }
+
     // Validate
     if (!name || !phone) {
       showAlert('Please enter your name and phone number first.', 'error');
